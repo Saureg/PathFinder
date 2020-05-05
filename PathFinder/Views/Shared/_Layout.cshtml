@@ -63,7 +63,8 @@
     <p>© 2020 Egorun, Inc. · <a href="#">Соглашения</a></p>
 </footer>
 
+<script src="~/js/jquery-3.5.1.min.js"></script>
 <script src="~/js/bootstrap.min.js"></script>
-
+@await RenderSectionAsync("scripts", required: false)
 </body>
 </html>
