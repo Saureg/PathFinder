@@ -1,0 +1,25 @@
+﻿@model CharacterListViewModel
+
+<div class="row mt-5 mb-2 m-4 p-3">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Имя</th>
+            <th scope="col">Раса</th>
+            <th scope="col">Класс</th>
+        </tr>
+        </thead>
+        <tbody>
+        @{
+            foreach (var character in Model.Characters)
+            {
+                <tr>
+                    <td>@character.Name</td>
+                    <td>@Model.Races.SingleOrDefault(r => r.Id == character.RaceId)?.Name</td>
+                    <td>@Model.CharClasses.SingleOrDefault(c => c.Id == character.CharClassId)?.Name</td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+</div>

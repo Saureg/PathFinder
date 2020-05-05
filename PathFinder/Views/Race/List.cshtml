@@ -1,0 +1,9 @@
+﻿<h1>Расы</h1>
+<div class="row mt-5 mb-2">
+    @{
+        foreach (Race race in @Model.AllRaces)
+        {
+            <p>@race.Name</p>
+        }
+    }
+</div>
