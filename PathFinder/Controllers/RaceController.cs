@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PathFinder.Data.Interfaces;
 using PathFinder.Data.Models;
@@ -29,6 +30,73 @@ namespace PathFinder.Controllers
             ViewData["Title"] = "Расы";
             
             return View(raceObj);
+        }
+        
+        public IActionResult Edit(int raceId)
+        {
+            var race = _allRaces.Races.Single(x => x.Id == raceId);
+            
+            ViewData["Title"] = race.Name;
+
+            return View(race);
+        }
+        
+        [HttpPost]
+        public IActionResult Edit(Race race)
+        {
+            ViewData["Success"] = false;
+            if (ModelState.IsValid)
+            {
+                _allRaces.EditRace(race);
+                ViewData["Success"] = true;
+            }
+
+            ViewData["Title"] = race.Name;
+            return View(race);
+        }
+        
+        public IActionResult Create()
+        {
+            ViewData["Title"] = "Новая раса";
+            
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult Create(Race race)
+        {
+            if (ModelState.IsValid)
+            {
+                _allRaces.CreateRace(race);
+                ViewData["Success"] = true;
+                return RedirectToAction("List");
+            }
+            
+            return View(race);
+        }
+
+        public IActionResult Delete(int? raceId)
+        {
+            if (raceId == null)
+            {
+                return NotFound();
+            }
+            
+            var race = _allRaces.Races.FirstOrDefault(x => x.Id == raceId);
+            if (race == null)
+            {
+                return NotFound();
+            }
+            
+            return View(race);
+        }
+        
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int raceId)
+        {
+            _allRaces.DeleteRace(raceId);
+            return RedirectToAction("List");
         }
     }
 }

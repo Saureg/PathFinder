@@ -100,14 +100,32 @@ namespace PathFinder.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int>("ChaTrait")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ConTrait")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
+
+                    b.Property<int>("DexTrait")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Image")
                         .HasColumnType("text");
 
+                    b.Property<int>("IntTrait")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .HasColumnType("text");
+
+                    b.Property<int>("StrTrait")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("WisTrait")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

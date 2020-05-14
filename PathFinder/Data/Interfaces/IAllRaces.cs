@@ -8,5 +8,11 @@ namespace PathFinder.Data.Interfaces
         IEnumerable<Race> Races { get; }
         
         Race GetRace(int raceId);
+        
+        void EditRace(Race race);
+        
+        void CreateRace(Race race);
+
+        void DeleteRace(int raceId);
     }
 }

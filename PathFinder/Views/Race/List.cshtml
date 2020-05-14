@@ -1,9 +1,29 @@
-﻿<h1>Расы</h1>
-<div class="row mt-5 mb-2">
-    @{
-        foreach (Race race in @Model.AllRaces)
-        {
-            <p>@race.Name</p>
+﻿@model RaceListViewModel
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
+    <span class="badge badge-secondary">Всего: @Model.AllRaces.Count()</span>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group mr-2">
+            <a class="btn btn-sm btn-outline-primary" asp-controller="Race" asp-action="Create">Создать</a>
+        </div>
+    </div>
+</div>
+<div class="pt-3 pb-2 mb-3">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Раса</th>
+        </tr>
+        </thead>
+        <tbody>
+        @{
+            foreach (var race in Model.AllRaces)
+            {
+                <tr>
+                    <td><a asp-controller="Race" asp-action="Edit" asp-route-raceId="@race.Id">@race.Name</a></td>
+                </tr>
+            }
         }
-    }
+        </tbody>
+    </table>
 </div>

@@ -34,14 +34,45 @@ function editCharacteristic(point) {
         modDictionary[i+1] = modValue;
         modValue++;
     }
-
+    
     let parentElement = $(point).parents("tr").get(0);
     let pointValue = $(point).val();
     let racialTraitValue = $(parentElement).find("#racial_trait").val();
     let actualPointValue = pointValue + racialTraitValue;
+
+    let remainingElement = document.getElementById("remaining_points");
     
-    $(parentElement).find("#coast").text(pointBuyDictionary[pointValue]);
+    let currentCoast = pointBuyDictionary[pointValue];
+    
+    $(parentElement).find("#coast").text(currentCoast);
     $(parentElement).find("#mod").text(modDictionary[pointValue]);
     $(parentElement).find("#actual_points").text(actualPointValue);
     $(parentElement).find("#actual_mod").text(modDictionary[actualPointValue]);
+    
+    let newRemainingValue = calculateRemaining();
+    $(remainingElement).text(newRemainingValue);
+
+    validateRemainingValue(newRemainingValue);
+}
+
+function calculateRemaining(){
+    let totalRemaining = document.getElementById("point_buy_input").value;
+    
+    let sum = 0;
+    $(".coast").each(function(){
+        sum = sum + + $(this).text();
+    });
+    
+    return totalRemaining - sum;
+}
+
+function validateRemainingValue(newRemainingValue) {
+    if (newRemainingValue < 0){
+        document.getElementById("create_button").setAttribute("disabled", "disabled");
+        document.getElementById("remaining_points_validation_message").removeAttribute("hidden");
+    }
+    else {
+        document.getElementById("create_button").removeAttribute("disabled");
+        document.getElementById("remaining_points_validation_message").setAttribute("hidden", "hidden");
+    }
 }

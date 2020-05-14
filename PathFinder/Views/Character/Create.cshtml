@@ -99,9 +99,9 @@
                         <td>@characteristic</td>
                         <td><input name="point_input" type="number" min="7" max="18" value="10" onchange="editCharacteristic(this)"/></td>
                         <td><span id="mod">0</span></td>
-                        <td><span id="coast">0</span></td>
+                        <td><span class="coast" id="coast">0</span></td>
                         <td><span id="racial_trait">0</span></td>
-                        <td><span id="actual_points">0</span></td>
+                        <td><span id="actual_points">10</span></td>
                         <td><span id="actual_mod">0</span></td>
                     </tr>
                 }
@@ -109,12 +109,15 @@
             </tbody>
         </table>
         <div class="col-12">
-                <p>Осталось: <span id="remaining_points"></span></p>
+            <p>
+                Осталось: <span id="remaining_points">10</span>
+                <span id="remaining_points_validation_message" hidden="hidden" class="alert alert-danger">Пунктов не должно быть меньше 0</span>
+            </p>
         </div>
         
         
         <div class="col-12">
-            <input class="btn btn-success" type="submit" value="Создать персонажа"/>
+            <input class="btn btn-success" id="create_button" type="submit" value="Создать персонажа"/>
         </div>
     </form>
 </div>
