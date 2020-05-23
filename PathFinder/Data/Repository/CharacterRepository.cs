@@ -24,5 +24,19 @@ namespace PathFinder.Data.Repository
 
         public Character GetCharacter(int characterId) =>
             _appDbContext.Characters.FirstOrDefault(r => r.Id == characterId);
+
+        public void DeleteCharacter(int characterId)
+        {
+            var currentCharacter = _appDbContext.Characters.SingleOrDefault(r => r.Id == characterId);
+            
+            if (currentCharacter == null)
+            {
+                return;
+            }
+            
+            _appDbContext.Characters.Remove(currentCharacter);
+
+            _appDbContext.SaveChanges();
+        }
     }
 }

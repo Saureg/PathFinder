@@ -10,5 +10,7 @@ namespace PathFinder.Data.Interfaces
         IEnumerable<Character> Characters { get; }
         
         Character GetCharacter(int characterId);
+
+        void DeleteCharacter(int characterId);
     }
 }

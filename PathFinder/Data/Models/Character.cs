@@ -23,33 +23,57 @@ namespace PathFinder.Data.Models
         [Required(ErrorMessage = "Обязательное поле")]
         public int CharClassId { get; set; }
         
-        public virtual CharClass CharClass { get; set; } 
+        public virtual CharClass.CharClass CharClass { get; set; } 
         
         [Display(Name = "Возраст")]
-        [Range(16, 100, ErrorMessage = "Возраст должен быть от 16 до 100")]
+        [Range(16, 500, ErrorMessage = "Возраст должен быть от 16 до 500")]
+        [Required(ErrorMessage = "Обязательное поле")]
         public int Age { get; set; }
         
         [Display(Name = "Пол")]
+        [Required(ErrorMessage = "Обязательное поле")]
         public string Gender { get; set; }
         
-        public uint PointBuy { get; set; }
+        [Range(7, 18, ErrorMessage = "Значение должно быть в диапазоне от 7 до 18")]
+        [Required(ErrorMessage = "Обязательное поле")]
+        public int Str { get; set; }
         
         [Range(7, 18, ErrorMessage = "Значение должно быть в диапазоне от 7 до 18")]
-        public uint Str { get; set; }
+        [Required(ErrorMessage = "Обязательное поле")]
+        public int Dex { get; set; }
         
         [Range(7, 18, ErrorMessage = "Значение должно быть в диапазоне от 7 до 18")]
-        public uint Dex { get; set; }
+        [Required(ErrorMessage = "Обязательное поле")]
+        public int Con { get; set; }
         
         [Range(7, 18, ErrorMessage = "Значение должно быть в диапазоне от 7 до 18")]
-        public uint Con { get; set; }
+        [Required(ErrorMessage = "Обязательное поле")]
+        public int Int { get; set; }
         
         [Range(7, 18, ErrorMessage = "Значение должно быть в диапазоне от 7 до 18")]
-        public uint Int { get; set; }
+        [Required(ErrorMessage = "Обязательное поле")]
+        public int Wis { get; set; }
         
         [Range(7, 18, ErrorMessage = "Значение должно быть в диапазоне от 7 до 18")]
-        public uint Wis { get; set; }
+        [Required(ErrorMessage = "Обязательное поле")]
+        public int Cha { get; set; }
         
-        [Range(7, 18, ErrorMessage = "Значение должно быть в диапазоне от 7 до 18")]
-        public uint Cha { get; set; }
+        [Range(-2, 6, ErrorMessage = "Значение должно быть в диапазоне от -2 до 6")]
+        public int StrMod { get; set; }
+        
+        [Range(-2, 6, ErrorMessage = "Значение должно быть в диапазоне от -2 до 6")]
+        public int DexMod { get; set; }
+        
+        [Range(-2, 6, ErrorMessage = "Значение должно быть в диапазоне от -2 до 6")]
+        public int ConMod { get; set; }
+        
+        [Range(-2, 6, ErrorMessage = "Значение должно быть в диапазоне от -2 до 6")]
+        public int IntMod { get; set; }
+        
+        [Range(-2, 6, ErrorMessage = "Значение должно быть в диапазоне от -2 до 6")]
+        public int WisMod { get; set; }
+        
+        [Range(-2, 6, ErrorMessage = "Значение должно быть в диапазоне от -2 до 6")]
+        public int ChaMod { get; set; }
     }
 }

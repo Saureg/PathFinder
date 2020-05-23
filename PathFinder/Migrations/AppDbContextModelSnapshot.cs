@@ -18,7 +18,22 @@ namespace PathFinder.Migrations
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("PathFinder.Data.Models.CharClass", b =>
+            modelBuilder.Entity("PathFinder.Data.Models.Alignment.Alignment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Alignment");
+                });
+
+            modelBuilder.Entity("PathFinder.Data.Models.CharClass.CharClass", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -32,11 +47,31 @@ namespace PathFinder.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("character varying(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Role")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("CharClasses");
+                });
+
+            modelBuilder.Entity("PathFinder.Data.Models.CharClass.ClassAlignment", b =>
+                {
+                    b.Property<int>("CharClassId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("AlignmentId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("CharClassId", "AlignmentId");
+
+                    b.HasIndex("AlignmentId");
+
+                    b.ToTable("ClassAlignment");
                 });
 
             modelBuilder.Entity("PathFinder.Data.Models.Character", b =>
@@ -49,40 +84,56 @@ namespace PathFinder.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("integer");
 
-                    b.Property<long>("Cha")
-                        .HasColumnType("bigint");
+                    b.Property<int>("Cha")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ChaMod")
+                        .HasColumnType("integer");
 
                     b.Property<int>("CharClassId")
                         .HasColumnType("integer");
 
-                    b.Property<long>("Con")
-                        .HasColumnType("bigint");
+                    b.Property<int>("Con")
+                        .HasColumnType("integer");
 
-                    b.Property<long>("Dex")
-                        .HasColumnType("bigint");
+                    b.Property<int>("ConMod")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Dex")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DexMod")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Gender")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<long>("Int")
-                        .HasColumnType("bigint");
+                    b.Property<int>("Int")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IntMod")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<long>("PointBuy")
-                        .HasColumnType("bigint");
-
                     b.Property<int>("RaceId")
                         .HasColumnType("integer");
 
-                    b.Property<long>("Str")
-                        .HasColumnType("bigint");
+                    b.Property<int>("Str")
+                        .HasColumnType("integer");
 
-                    b.Property<long>("Wis")
-                        .HasColumnType("bigint");
+                    b.Property<int>("StrMod")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Wis")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("WisMod")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -99,6 +150,9 @@ namespace PathFinder.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("AnyTrait")
+                        .HasColumnType("integer");
 
                     b.Property<int>("ChaTrait")
                         .HasColumnType("integer");
@@ -119,7 +173,9 @@ namespace PathFinder.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnType("character varying(30)")
+                        .HasMaxLength(30);
 
                     b.Property<int>("StrTrait")
                         .HasColumnType("integer");
@@ -132,9 +188,24 @@ namespace PathFinder.Migrations
                     b.ToTable("Races");
                 });
 
+            modelBuilder.Entity("PathFinder.Data.Models.CharClass.ClassAlignment", b =>
+                {
+                    b.HasOne("PathFinder.Data.Models.Alignment.Alignment", "Alignment")
+                        .WithMany("ClassAlignments")
+                        .HasForeignKey("AlignmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PathFinder.Data.Models.CharClass.CharClass", "CharClass")
+                        .WithMany("ClassAlignments")
+                        .HasForeignKey("CharClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("PathFinder.Data.Models.Character", b =>
                 {
-                    b.HasOne("PathFinder.Data.Models.CharClass", "CharClass")
+                    b.HasOne("PathFinder.Data.Models.CharClass.CharClass", "CharClass")
                         .WithMany()
                         .HasForeignKey("CharClassId")
                         .OnDelete(DeleteBehavior.Cascade)

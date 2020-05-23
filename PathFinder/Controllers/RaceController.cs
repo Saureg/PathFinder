@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PathFinder.Data.Interfaces;
 using PathFinder.Data.Models;
@@ -21,26 +20,26 @@ namespace PathFinder.Controllers
         public ViewResult List()
         {
             IEnumerable<Race> races = _allRaces.Races.OrderBy(x => x.Id);
-            
+
             var raceObj = new RaceListViewModel
             {
                 AllRaces = races
             };
 
             ViewData["Title"] = "Расы";
-            
+
             return View(raceObj);
         }
-        
+
         public IActionResult Edit(int raceId)
         {
             var race = _allRaces.Races.Single(x => x.Id == raceId);
-            
+
             ViewData["Title"] = race.Name;
 
             return View(race);
         }
-        
+
         [HttpPost]
         public IActionResult Edit(Race race)
         {
@@ -54,14 +53,14 @@ namespace PathFinder.Controllers
             ViewData["Title"] = race.Name;
             return View(race);
         }
-        
+
         public IActionResult Create()
         {
             ViewData["Title"] = "Новая раса";
-            
+
             return View();
         }
-        
+
         [HttpPost]
         public IActionResult Create(Race race)
         {
@@ -71,32 +70,34 @@ namespace PathFinder.Controllers
                 ViewData["Success"] = true;
                 return RedirectToAction("List");
             }
-            
+
             return View(race);
         }
 
         public IActionResult Delete(int? raceId)
         {
-            if (raceId == null)
-            {
-                return NotFound();
-            }
-            
+            if (raceId == null) return NotFound();
+
             var race = _allRaces.Races.FirstOrDefault(x => x.Id == raceId);
-            if (race == null)
-            {
-                return NotFound();
-            }
-            
+            if (race == null) return NotFound();
+
             return View(race);
         }
-        
-        [HttpPost, ActionName("Delete")]
+
+        [HttpPost]
+        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int raceId)
         {
             _allRaces.DeleteRace(raceId);
             return RedirectToAction("List");
+        }
+
+        public JsonResult SuggestList()
+        {
+            IEnumerable<Race> races = _allRaces.Races.OrderBy(x => x.Id);
+
+            return Json(races);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using PathFinder.Data.Models;
+using PathFinder.Data.Models.CharClass;
 
 namespace PathFinder.Data
 {

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using PathFinder.Data.Interfaces;
 using PathFinder.Data.Models;
 using PathFinder.ViewModels;
@@ -24,12 +23,12 @@ namespace PathFinder.Controllers
 
         public IActionResult Create()
         {
-            var races = _allRaces.Races;
+            var races = _allRaces.Races.ToList();
             
             var characterViewModel = new CharacterCreateViewModel
             {
-                RaceSelectList = new SelectList(races, "Id", "Name"),
-                CharClassSelectList = new SelectList(_allClasses.CharClasses, "Id", "Name")
+                CharClasses = _allClasses.CharClasses.ToList(),
+                Races = races.ToList()
             };
             
             ViewData["Title"] = "Новый персонаж";
@@ -46,11 +45,13 @@ namespace PathFinder.Controllers
                 return RedirectToAction("Complete");
             }
 
+            var races = _allRaces.Races.ToList();
+            
             var characterViewModel = new CharacterCreateViewModel
             {
                 Character = character,
-                RaceSelectList = new SelectList(_allRaces.Races, "Id", "Name"),
-                CharClassSelectList = new SelectList(_allClasses.CharClasses, "Id", "Name")
+                CharClasses = _allClasses.CharClasses.ToList(),
+                Races = races
             };
 
             return View(characterViewModel);
@@ -77,6 +78,30 @@ namespace PathFinder.Controllers
             ViewData["Title"] = "Персонажи";
             
             return View(characterViewModel);
+        }
+        
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            
+            var character = _character.Characters.FirstOrDefault(x => x.Id == id);
+            if (character == null)
+            {
+                return NotFound();
+            }
+
+            return View(character);
+        }
+        
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _character.DeleteCharacter(id);
+            return RedirectToAction("List");
         }
     }
 }

@@ -17,27 +17,31 @@ namespace PathFinder.Data.Models
         public string Image { get; set; }
         
         [Display(Name = "Модификатор силы")]
-        [Range(-10, 10, ErrorMessage = "Модификатор должен быть от -10 до 10")]
+        [Range(-2, 2, ErrorMessage = "Модификатор должен быть от -2 до 2")]
         public int StrTrait { get; set; }
         
         [Display(Name = "Модификатор ловкости")]
-        [Range(-10, 10, ErrorMessage = "Модификатор должен быть от -10 до 10")]
+        [Range(-2, 2, ErrorMessage = "Модификатор должен быть от -2 до 2")]
         public int DexTrait { get; set; }
         
         [Display(Name = "Модификатор выносливости")]
-        [Range(-10, 10, ErrorMessage = "Модификатор должен быть от -10 до 10")]
+        [Range(-2, 2, ErrorMessage = "Модификатор должен быть от -2 до 2")]
         public int ConTrait { get; set; }
         
         [Display(Name = "Модификатор интеллекта")]
-        [Range(-10, 10, ErrorMessage = "Модификатор должен быть от -10 до 10")]
+        [Range(-2, 2, ErrorMessage = "Модификатор должен быть от -2 до 2")]
         public int IntTrait { get; set; }
         
         [Display(Name = "Модификатор мудрости")]
-        [Range(-10, 10, ErrorMessage = "Модификатор должен быть от -10 до 10")]
+        [Range(-2, 2, ErrorMessage = "Модификатор должен быть от -2 до 2")]
         public int WisTrait { get; set; }
         
         [Display(Name = "Модификатор харизмы")]
-        [Range(-10, 10, ErrorMessage = "Модификатор должен быть от -10 до 10")]
+        [Range(-2, 2, ErrorMessage = "Модификатор должен быть от -2 до 2")]
         public int ChaTrait { get; set; }
+        
+        [Display(Name = "Модификатор любой характеристики")]
+        [Range(-2, 2, ErrorMessage = "Модификатор должен быть от -2 до 2")]
+        public int AnyTrait { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using PathFinder.Data.Models;
+using PathFinder.Data.Models.CharClass;
 
 namespace PathFinder.ViewModels
 {

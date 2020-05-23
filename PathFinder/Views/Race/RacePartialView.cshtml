@@ -20,46 +20,54 @@
         var intTraitValue = Model?.IntTrait ?? 0;
         var wisTraitValue = Model?.WisTrait ?? 0;
         var chaTraitValue = Model?.ChaTrait ?? 0;
+        var anyTraitValue = Model?.AnyTrait ?? 0;
     }
+    <div class="form-group">
+            <div class="col-12">
+                <label asp-for="@Model.AnyTrait"></label>
+                <input type="number" asp-for="@Model.AnyTrait" value="@anyTraitValue" class="form-control">
+                <span asp-validation-for="@Model.AnyTrait" class="text-danger"></span>
+            </div>
+        </div>
     <div class="form-group">
         <div class="col-12">
             <label asp-for="@Model.StrTrait"></label>
-            <input type="number" asp-for="@Model.StrTrait" value="@strTraitValue" class="form-control">
+            <input type="number" asp-for="@Model.StrTrait" value="@strTraitValue" class="form-control trait">
             <span asp-validation-for="@Model.StrTrait" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <div class="col-12">
             <label asp-for="@Model.DexTrait"></label>
-            <input type="number" asp-for="@Model.DexTrait" value="@dexTraitValue" class="form-control">
+            <input type="number" asp-for="@Model.DexTrait" value="@dexTraitValue" class="form-control trait">
             <span asp-validation-for="@Model.DexTrait" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <div class="col-12">
             <label asp-for="@Model.ConTrait"></label>
-            <input type="number" asp-for="@Model.ConTrait" value="@conTraitValue" class="form-control">
+            <input type="number" asp-for="@Model.ConTrait" value="@conTraitValue" class="form-control trait">
             <span asp-validation-for="@Model.ConTrait" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <div class="col-12">
             <label asp-for="@Model.IntTrait"></label>
-            <input type="number" asp-for="@Model.IntTrait" class="form-control" value="@intTraitValue">
+            <input type="number" asp-for="@Model.IntTrait" class="form-control trait" value="@intTraitValue">
             <span asp-validation-for="@Model.IntTrait" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <div class="col-12">
             <label asp-for="@Model.WisTrait"></label>
-            <input type="number" asp-for="@Model.WisTrait" class="form-control" value="@wisTraitValue">
+            <input type="number" asp-for="@Model.WisTrait" class="form-control trait" value="@wisTraitValue">
             <span asp-validation-for="@Model.WisTrait" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
         <div class="col-12">
             <label asp-for="@Model.ChaTrait"></label>
-            <input type="number" asp-for="@Model.ChaTrait" class="form-control" value="@chaTraitValue">
+            <input type="number" asp-for="@Model.ChaTrait" class="form-control trait" value="@chaTraitValue">
             <span asp-validation-for="@Model.ChaTrait" class="text-danger"></span>
         </div>
     </div>
@@ -68,4 +76,3 @@
         <button class="btn btn-outline-dark" asp-controller="Race" asp-action="List">Назад</button>
     </div>
 </div>
-

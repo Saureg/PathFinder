@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Razor.TagHelpers
-@model Race
+﻿@model Race
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Удаление</h1>
@@ -15,6 +14,5 @@
                 <button type="submit" href="#" class="btn my-2 btn-outline-danger" asp-controller="Race" asp-action="Delete" asp-route-raceId="@Model.Id">Удалить</button>
                 <a asp-controller="Race" asp-action="Edit" asp-route-raceId="@Model.Id" class="btn my-2 btn-outline-dark">Отмена</a>
             </form>
-        </p>
-    </div>
+        </div>
 </div>
