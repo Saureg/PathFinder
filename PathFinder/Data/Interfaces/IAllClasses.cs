@@ -8,7 +8,7 @@ namespace PathFinder.Data.Interfaces
     {
         IEnumerable<CharClass> CharClasses { get; }
         
-        CharClass GetClass(int raceId);
+        CharClass GetClass(int classId);
         
         void EditClass(CharClass charClass);
         

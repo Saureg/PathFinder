@@ -6,13 +6,15 @@ namespace PathFinder.Data.Models.CharClass
 {
     public class CharClass
     {
-        [BindNever]
         public int Id { get; set; }
         
         [Display(Name = "Название класса")]
         [StringLength(30, MinimumLength = 3, ErrorMessage = "Название класса должно быть не менее 3-х символов и не более 30")]
         [Required(ErrorMessage = "Обязательное поле")]
         public string Name { get; set; }
+        
+        [Display(Name = "Краткое описание")]
+        public string ShortDescription { get; set; }
         
         [Display(Name = "Описание")]
         public string Description { get; set; }
@@ -24,5 +26,8 @@ namespace PathFinder.Data.Models.CharClass
         
         [Display(Name = "Доступные мировоззрения")]
         public List<ClassAlignment> ClassAlignments { get; set; }
+        
+        [Display(Name = "Хиты здоровья")]
+        public string HitDice { get; set; }
     }
 }

@@ -1,5 +1,8 @@
-﻿<div class="col-md-9 col-xl-8 py-md-5 pl-md-5 bd-content">
-    <form asp-action="Create" method="post">
+﻿@model ClassViewModel
+
+<div class="col-md-9 col-xl-8 py-md-5 pl-md-5 bd-content">
+    <form asp-action="Edit" method="post">
+        @Html.HiddenFor(model => model.CharClass.Id)
         @await Html.PartialAsync("_CreateOrEditPartialView")
     </form>
 </div>

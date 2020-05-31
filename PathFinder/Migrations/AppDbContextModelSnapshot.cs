@@ -30,7 +30,7 @@ namespace PathFinder.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Alignment");
+                    b.ToTable("Alignments");
                 });
 
             modelBuilder.Entity("PathFinder.Data.Models.CharClass.CharClass", b =>
@@ -43,6 +43,9 @@ namespace PathFinder.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
+                    b.Property<string>("HitDice")
+                        .HasColumnType("text");
+
                     b.Property<string>("Image")
                         .HasColumnType("text");
 
@@ -52,6 +55,9 @@ namespace PathFinder.Migrations
                         .HasMaxLength(30);
 
                     b.Property<string>("Role")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ShortDescription")
                         .HasColumnType("text");
 
                     b.HasKey("Id");

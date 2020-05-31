@@ -1,0 +1,58 @@
+﻿@model PathFinder.Data.Models.CharClass.CharClass
+
+<div class="col-md-9 col-xl-8 py-md-5 pl-md-5 bd-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3>@Model.Name</h3>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <p>@Model.Description</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <p>
+                    <strong><label asp-for="Role"></label>: </strong>
+                    @Model.Role
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <p>
+                    <strong><label asp-for="ClassAlignments"></label>: </strong>
+
+                    @for (var i = 0; i < Model.ClassAlignments.Count; i++)
+                    {
+                        var alignment = Model.ClassAlignments[i];
+                        <em>@alignment</em>
+                        if (i != Model.ClassAlignments.Count - 1)
+                        {
+                            <em>; </em>
+                        }
+                        else
+                        {
+                            <em>.</em>
+                        }
+                    }
+
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <h3>
+                    <label asp-for="Description"></label>
+                </h3>
+                <p>@Model.Description</p>
+            </div>
+        </div>
+    </div>
+</div>

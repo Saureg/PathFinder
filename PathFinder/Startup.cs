@@ -31,6 +31,7 @@ namespace PathFinder
             services.AddTransient<IAllRaces, RaceRepository>();
             services.AddTransient<ICharacter, CharacterRepository>();
             services.AddTransient<IAllClasses, CharClassRepository>();
+            services.AddTransient<IAllAlignments, AlignmentRepository>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

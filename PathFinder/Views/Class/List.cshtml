@@ -1,37 +1,23 @@
 ﻿@model IEnumerable<PathFinder.Data.Models.CharClass.CharClass>
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2">
-    <span class="badge badge-secondary">Всего: @Model.Count()</span>
-    <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">
-            <a class="btn btn-sm btn-outline-primary">Создать</a>
+<div class="pt-3 pb-2 mb-3">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-primary">Новый класс</h5>
+            <a asp-controller="Class" asp-action="Create" class="btn btn-outline-primary">Создать</a>
         </div>
     </div>
-</div>
-<div class="pt-3 pb-2 mb-3">
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">Класс</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        @{
-            foreach (var charClass in Model)
-            {
-                <tr>
-                    <td><a asp-controller="Class">@charClass.Name</a></td>
-                    <td>
-                        <a class="remove-icon" asp-controller="Class" asp-action="Delete" asp-route-classId="@charClass.Id" title="Удалить">
-                            <svg class="bi bi-trash-fill" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M2.5 1a1 1 0 00-1 1v1a1 1 0 001 1H3v9a2 2 0 002 2h6a2 2 0 002-2V4h.5a1 1 0 001-1V2a1 1 0 00-1-1H10a1 1 0 00-1-1H7a1 1 0 00-1 1H2.5zm3 4a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7a.5.5 0 01.5-.5zM8 5a.5.5 0 01.5.5v7a.5.5 0 01-1 0v-7A.5.5 0 018 5zm3 .5a.5.5 0 00-1 0v7a.5.5 0 001 0v-7z" clip-rule="evenodd"/>
-                            </svg>
-                        </a>
-                    </td>
-                </tr>
-            }
+    @{
+        foreach (var charClass in Model)
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><a asp-controller="Class" asp-action="List" asp-route-id="@charClass.Id">@charClass.Name</a></h5>
+                    <p class="card-text">@charClass.ShortDescription</p>
+                    <a class="btn btn-outline-primary" asp-controller="Class" asp-action="Edit" asp-route-classId="@charClass.Id">Редактировать</a>
+                    <a asp-controller="Class" asp-action="Delete" asp-route-classId="@charClass.Id" class="btn btn-outline-danger">Удалить</a>
+                </div>
+            </div>
         }
-        </tbody>
-    </table>
+    }
 </div>

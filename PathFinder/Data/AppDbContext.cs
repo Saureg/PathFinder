@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PathFinder.Data.Models;
+using PathFinder.Data.Models.Alignment;
 using PathFinder.Data.Models.CharClass;
 
 namespace PathFinder.Data
@@ -13,6 +14,8 @@ namespace PathFinder.Data
         public DbSet<Race> Races { get; set; }
         public DbSet<CharClass> CharClasses { get; set; }
         public DbSet<Character> Characters { get; set; }
+        public DbSet<Alignment> Alignments { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

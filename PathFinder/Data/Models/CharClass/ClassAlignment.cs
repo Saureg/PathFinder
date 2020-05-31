@@ -6,10 +6,10 @@ namespace PathFinder.Data.Models.CharClass
     {
         public int AlignmentId { get; set; }
         
-        public virtual Alignment.Alignment Alignment { get; set; }
+        public Alignment.Alignment Alignment { get; set; }
         
         public int CharClassId { get; set; }
         
-        public virtual CharClass CharClass { get; set; }
+        public CharClass CharClass { get; set; }
     }
 }

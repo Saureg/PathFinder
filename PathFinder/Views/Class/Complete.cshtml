@@ -1,0 +1,13 @@
+﻿@model int
+
+<div class="jumbotron text-center">
+    <div class="container">
+        <h1>Класс успешно сохранен!</h1>
+        <p class="lead">Перейти к списку классов?</p>
+        <p>
+        <form>
+            <button class="btn my-2 btn-outline-success" asp-controller="Class" asp-action="List">Да</button>
+            <a asp-controller="Class" asp-action="Edit" asp-route-classId="@Model" class="btn my-2 btn-outline-dark">Нет</a>
+        </form>
+    </div>
+</div>
