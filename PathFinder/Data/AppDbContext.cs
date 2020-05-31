@@ -15,7 +15,7 @@ namespace PathFinder.Data
         public DbSet<CharClass> CharClasses { get; set; }
         public DbSet<Character> Characters { get; set; }
         public DbSet<Alignment> Alignments { get; set; }
-        
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

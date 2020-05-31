@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,6 +33,7 @@ namespace PathFinder
             services.AddTransient<ICharacter, CharacterRepository>();
             services.AddTransient<IAllClasses, CharClassRepository>();
             services.AddTransient<IAllAlignments, AlignmentRepository>();
+            services.AddTransient<IAllUsers, UserRepository>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -39,6 +41,12 @@ namespace PathFinder
             services.AddMvc(option =>
                 option.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(_ => "Обязательное поле"));
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.LoginPath = new PathString("/Account/Login");
+                });
+            
             services.AddMemoryCache();
             services.AddSession();
         }
@@ -52,8 +60,11 @@ namespace PathFinder
             app.UseStaticFiles();
             app.UseSession();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+            
             app.UseMvc(routes => { routes.MapRoute("default", "{controller=Home}/{action=Index}"); });
-
+            
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 var content = scope.ServiceProvider.GetRequiredService<AppDbContext>();

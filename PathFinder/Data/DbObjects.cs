@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PathFinder.Data.Models;
 using PathFinder.Data.Models.CharClass;
@@ -43,6 +44,17 @@ namespace PathFinder.Data
                 });
             }
 
+            if (!context.Users.Any())
+            {
+                context.Add(new User
+                {
+                    Email = "user@user.ru",
+                    Name = "test_user",
+                    Password = "123123",
+                    Created = DateTime.Now
+                });
+            }
+            
             context.SaveChanges();
         }
     }
