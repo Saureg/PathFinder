@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace PathFinder.Data.Models
+namespace PathFinder.Data.Models.Users
 {
     public class User
     {
@@ -20,8 +20,14 @@ namespace PathFinder.Data.Models
         
         [Display(Name = "Пароль")]
         [Required(ErrorMessage = "Обязательное поле")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         
         public DateTime Created { get; set; }
+        
+        public int RoleId { get; set; }
+        
+        [Display(Name = "Роль")]
+        public Role Role { get; set; }
     }
 }

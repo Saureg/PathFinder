@@ -1,12 +1,18 @@
 ﻿@model IEnumerable<PathFinder.Data.Models.CharClass.CharClass>
 
 <div class="pt-3 pb-2 mb-3">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title text-primary">Новый класс</h5>
-            <a asp-controller="Class" asp-action="Create" class="btn btn-outline-primary">Создать</a>
-        </div>
-    </div>
+    @{
+        if (User.IsInRole("admin"))
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Новый класс</h5>
+                    <a asp-controller="Class" asp-action="Create" class="btn btn-outline-primary">Создать</a>
+                </div>
+            </div>        
+        }
+    }
+    
     @{
         foreach (var charClass in Model)
         {
@@ -14,8 +20,13 @@
                 <div class="card-body">
                     <h5 class="card-title"><a asp-controller="Class" asp-action="List" asp-route-id="@charClass.Id">@charClass.Name</a></h5>
                     <p class="card-text">@charClass.ShortDescription</p>
-                    <a class="btn btn-outline-primary" asp-controller="Class" asp-action="Edit" asp-route-classId="@charClass.Id">Редактировать</a>
-                    <a asp-controller="Class" asp-action="Delete" asp-route-classId="@charClass.Id" class="btn btn-outline-danger">Удалить</a>
+                    @{
+                        if (User.IsInRole("admin"))
+                        {
+                            <a class="btn btn-outline-primary" asp-controller="Class" asp-action="Edit" asp-route-classId="@charClass.Id">Редактировать</a>
+                            <a asp-controller="Class" asp-action="Delete" asp-route-classId="@charClass.Id" class="btn btn-outline-danger">Удалить</a>
+                        }
+                    }
                 </div>
             </div>
         }

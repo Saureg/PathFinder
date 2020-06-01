@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PathFinder.Data.Interfaces;
 using PathFinder.Data.Models;
@@ -31,6 +32,7 @@ namespace PathFinder.Controllers
             return View(raceObj);
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(int raceId)
         {
             var race = _allRaces.Races.Single(x => x.Id == raceId);
@@ -40,6 +42,7 @@ namespace PathFinder.Controllers
             return View(race);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Edit(Race race)
         {
@@ -54,6 +57,7 @@ namespace PathFinder.Controllers
             return View(race);
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             ViewData["Title"] = "Новая раса";
@@ -61,6 +65,7 @@ namespace PathFinder.Controllers
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Create(Race race)
         {
@@ -74,6 +79,7 @@ namespace PathFinder.Controllers
             return View(race);
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int? raceId)
         {
             if (raceId == null) return NotFound();
@@ -84,6 +90,7 @@ namespace PathFinder.Controllers
             return View(race);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]

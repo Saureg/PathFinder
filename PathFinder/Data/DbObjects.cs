@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using PathFinder.Data.Models;
 using PathFinder.Data.Models.CharClass;
+using PathFinder.Data.Models.Users;
 
 namespace PathFinder.Data
 {
@@ -44,6 +45,11 @@ namespace PathFinder.Data
                 });
             }
 
+            if (!context.Roles.Any())
+            {
+                context.Roles.AddRange(Roles.Select(r => r.Value));
+            }
+            
             if (!context.Users.Any())
             {
                 context.Add(new User
@@ -51,11 +57,47 @@ namespace PathFinder.Data
                     Email = "user@user.ru",
                     Name = "test_user",
                     Password = "123123",
-                    Created = DateTime.Now
+                    Created = DateTime.Now,
+                    Role = Roles["admin"]
                 });
             }
-            
+
             context.SaveChanges();
+        }
+
+        private static Dictionary<string, Role> _roles;
+        
+        public static Dictionary<string, Role> Roles
+        {
+            get
+            {
+                if (_roles == null)
+                {
+                    var list = new List<Role>
+                    {
+                        new Role
+                        {
+                            Name = "admin"
+                        },
+                        new Role
+                        {
+                            Name = "master"
+                        },
+                        new Role
+                        {
+                            Name = "user"
+                        }    
+                    };
+                    
+                    _roles = new Dictionary<string, Role>();
+                    foreach (var element in list)
+                    {
+                        _roles.Add(element.Name, element);
+                    }
+                }
+
+                return _roles;
+            }
         }
     }
 }

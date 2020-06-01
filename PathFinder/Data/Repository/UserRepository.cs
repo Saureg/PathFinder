@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using PathFinder.Data.Interfaces;
 using PathFinder.Data.Models;
+using PathFinder.Data.Models.Users;
 
 namespace PathFinder.Data.Repository
 {

@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PathFinder.Data.Interfaces;
 using PathFinder.Data.Models.CharClass;
 using PathFinder.ViewModels;
+using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace PathFinder.Controllers
 {
@@ -31,6 +33,7 @@ namespace PathFinder.Controllers
             return View(charClasses);
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             ViewData["Title"] = "Новый класс";
@@ -43,6 +46,7 @@ namespace PathFinder.Controllers
             return View(classViewModel);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Create(CharClass charClass)
         {
@@ -62,6 +66,7 @@ namespace PathFinder.Controllers
             return View(classViewModel);
         }
         
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int? classId)
         {
             if (classId == null) return NotFound();
@@ -72,6 +77,7 @@ namespace PathFinder.Controllers
             return View(charClass);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -81,6 +87,7 @@ namespace PathFinder.Controllers
             return RedirectToAction("List");
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(int classId)
         {
             var charClass = _allClasses.GetClass(classId);
@@ -99,6 +106,7 @@ namespace PathFinder.Controllers
             return View(classViewModel);
         }
         
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Edit(CharClass charClass)
         {
@@ -118,6 +126,7 @@ namespace PathFinder.Controllers
             return View(classViewModel);
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult Complete(int classId)
         {
             return View(classId);
