@@ -2,6 +2,7 @@
 using PathFinder.Data.Models;
 using PathFinder.Data.Models.Alignment;
 using PathFinder.Data.Models.CharClass;
+using PathFinder.Data.Models.Users;
 
 namespace PathFinder.Data
 {
@@ -15,7 +16,8 @@ namespace PathFinder.Data
         public DbSet<CharClass> CharClasses { get; set; }
         public DbSet<Character> Characters { get; set; }
         public DbSet<Alignment> Alignments { get; set; }
-        
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
