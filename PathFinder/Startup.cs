@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PathFinder.Config;
 using PathFinder.Data;
 using PathFinder.Data.Interfaces;
 using PathFinder.Data.Repository;
@@ -14,11 +15,11 @@ namespace PathFinder
 {
     public class Startup
     {
-        private readonly IConfigurationRoot _confString;
+        private readonly IConfigurationRoot _configuration;
 
         public Startup(IHostEnvironment hostEnv)
         {
-            _confString = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("dbSettings.json")
+            _configuration = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("config.json")
                 .Build();
         }
 
@@ -27,7 +28,7 @@ namespace PathFinder
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options =>
-                options.UseNpgsql(_confString.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IAllRaces, RaceRepository>();
             services.AddTransient<ICharacter, CharacterRepository>();
@@ -50,6 +51,9 @@ namespace PathFinder
             
             services.AddMemoryCache();
             services.AddSession();
+
+            services.AddOptions();
+            services.Configure<ConfigModel>(_configuration.GetSection("Config"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +73,7 @@ namespace PathFinder
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 var content = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                DbObjects.Initial(content);
+                DbObjects.Initial(content, _configuration);
             }
         }
     }
