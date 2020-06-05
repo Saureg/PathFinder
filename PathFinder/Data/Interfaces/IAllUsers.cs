@@ -9,5 +9,7 @@ namespace PathFinder.Data.Interfaces
         DbSet<User> Users { get; }
         
         User GetUser(int userId);
+
+        void EditUser(User user);
     }
 }

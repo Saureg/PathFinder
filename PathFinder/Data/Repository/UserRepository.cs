@@ -19,5 +19,19 @@ namespace PathFinder.Data.Repository
         public DbSet<User> Users => _appDbContext.Users;
         
         public User GetUser(int userId) => _appDbContext.Users.FirstOrDefault(x=>x.Id == userId);
+        
+        public void EditUser(User user)
+        {
+            var currentUser = GetUser(user.Id);
+            
+            if (currentUser == null)
+            {
+                return;
+            }
+
+            _appDbContext.Entry(currentUser).CurrentValues.SetValues(user);
+            
+            _appDbContext.SaveChanges();
+        }
     }
 }

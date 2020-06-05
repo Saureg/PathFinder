@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PathFinder.Data.Interfaces;
 using PathFinder.Data.Models.Users;
-using PathFinder.ViewModels.Login;
+using PathFinder.ViewModels.User;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace PathFinder.Controllers
