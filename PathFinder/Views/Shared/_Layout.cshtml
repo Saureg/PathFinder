@@ -1,134 +1,82 @@
-﻿@using Microsoft.AspNetCore.Authorization
-@inject IAuthorizationService AuthorizationService
-
+﻿@using PathFinder.Extensions
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width"/>
     <title>@ViewData["Title"]</title>
     <link href="~/images/logo.png" rel="shortcut icon" type="image/x-icon"/>
-    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/css/layout.css" rel="stylesheet"/>
+    <link href="~/css/style.css" rel="stylesheet"/>
 </head>
-<body>
-<header>
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-nav" aria-controls="left-nav" aria-expanded="true" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" asp-controller="Home" asp-action="Index">Pathfinder</a>
-        <div class="navbar-brand mx-auto text-center"><h5>@ViewData["Title"]</h5></div>
-    </nav>
-</header>
-<div class="container-fluid">
-    <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar collapse" id="left-nav">
-            <div class="sidebar-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">
-                            <svg class="bi bi-house-fill feather" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 01-1.5 1.5h-9A1.5 1.5 0 012 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 011.414 0l6.647 6.646a.5.5 0 01-.708.708L8 2.207 1.354 8.854a.5.5 0 11-.708-.708L7.293 1.5z" clip-rule="evenodd"/>
-                            </svg>
-                            Главная
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Race" asp-action="List">
-                            <svg class="bi bi-flag-fill feather" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M3.5 1a.5.5 0 01.5.5v13a.5.5 0 01-1 0v-13a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M3.762 2.558C4.735 1.909 5.348 1.5 6.5 1.5c.653 0 1.139.325 1.495.562l.032.022c.391.26.646.416.973.416.168 0 .356-.042.587-.126a8.89 8.89 0 00.593-.25c.058-.027.117-.053.18-.08.57-.255 1.278-.544 2.14-.544a.5.5 0 01.5.5v6a.5.5 0 01-.5.5c-.638 0-1.18.21-1.734.457l-.159.07c-.22.1-.453.205-.678.287A2.719 2.719 0 019 9.5c-.653 0-1.139-.325-1.495-.562l-.032-.022c-.391-.26-.646-.416-.973-.416-.833 0-1.218.246-2.223.916A.5.5 0 013.5 9V3a.5.5 0 01.223-.416l.04-.026z" clip-rule="evenodd"/>
-                            </svg>
-                            Расы
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Class" asp-action="List">
-                            <svg class="bi bi-hammer feather" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.812 1.952a.5.5 0 01-.312.89c-1.671 0-2.852.596-3.616 1.185L4.857 5.073V6.21a.5.5 0 01-.146.354L3.425 7.853a.5.5 0 01-.708 0L.146 5.274a.5.5 0 010-.706l1.286-1.29a.5.5 0 01.354-.146H2.84C4.505 1.228 6.216.862 7.557 1.04a5.009 5.009 0 012.077.782l.178.129z"/>
-                                <path fill-rule="evenodd" d="M6.012 3.5a.5.5 0 01.359.165l9.146 8.646A.5.5 0 0115.5 13L14 14.5a.5.5 0 01-.756-.056L4.598 5.297a.5.5 0 01.048-.65l1-1a.5.5 0 01.366-.147z" clip-rule="evenodd"/>
-                            </svg>
-                            Классы
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Character" asp-action="List">
-                            <svg class="bi bi-people-fill feather" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 100-6 3 3 0 000 6zm-5.784 6A2.238 2.238 0 015 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 005 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" clip-rule="evenodd"/>
-                            </svg>
-                            Персонажи
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Character" asp-action="Create">
-                            <svg class="bi bi-plus-circle feather" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
-                            </svg>
-                            Создать персонажа
-                        </a>
-                    </li>
-                    
-                </ul>
-                
-                <div class="dropdown-divider"></div>
-                <ul class="nav flex-column">
-                    @{
-                        if (!User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="Login">
-                                <svg class="bi bi-door-closed-fill feather" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" d="M4 1a1 1 0 0 0-1 1v13H1.5a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2a1 1 0 0 0-1-1H4zm2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                                </svg>
-                                    Войти
-                                </a>
-                            </li>    
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="User" asp-action="Profile">
-                                    <svg class="bi bi-person-circle feather" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
-                                      <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                                      <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
-                                    </svg>
-                                    @User.Identity.Name
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Account" asp-action="Logout">
-                                <svg class="bi bi-arrow-left-circle-fill feather" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.646 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L6.207 7.5H11a.5.5 0 0 1 0 1H6.207l2.147 2.146z"/>
-                                </svg>
-                                    Выйти
-                                </a>
-                            </li>
-                        }
-                    }
-                    
-                    
-                </ul>
-            </div>
+<body class="bg-light">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse offcanvas-collapse" id="offcanvas">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item @Html.IsSelected("Home", "Index")">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">Главная</a>
+            </li>
+            <li class="nav-item @Html.IsSelected("Race", "List,Create,Edit,Delete")">
+                <a class="nav-link" asp-controller="Race" asp-action="List">Расы</a>
+            </li>
+            <li class="nav-item @Html.IsSelected("Class", "List,Create,Delete,Edit,Complete")">
+                <a class="nav-link" asp-controller="Class" asp-action="List">Классы</a>
+            </li>
+            <li class="nav-item @Html.IsSelected("Character", "List,Delete")">
+                <a class="nav-link" asp-controller="Character" asp-action="List">Персонажи</a>
+            </li>
+            <li class="nav-item @Html.IsSelected("Character", "Create,Complete")">
+                <a class="nav-link" asp-controller="Character" asp-action="Create">Создать персонажа</a>
+            </li>
             
-        </nav>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10">
-            <div class="mt-5">
-                @RenderBody()
-            </div>
-        </main>
+            @{
+                if (User.IsInRole("admin"))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown-settings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Настройки</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown-settings">
+                            <a class="dropdown-item" href="#">Пользователи</a>
+                        </div>
+                    </li>
+                }
+            }
+            
+        </ul>
+        
+        <ul class="navbar-nav ml-md-auto">
+            @{
+                if (!User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="Login">Войти</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item dropdown @Html.IsSelected("User", "Profile")">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@User.Identity.Name</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown-profile">
+                            <a class="dropdown-item" asp-controller="User" asp-action="Profile">Профиль</a>
+                            <a class="dropdown-item" asp-controller="Account" asp-action="Logout">Выход</a>
+                        </div>
+                    </li>
+                }
+            }
+        </ul>
     </div>
-</div>
-<footer class="container">
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>© 2020 Egorun, Inc. · <a href="#">Соглашения</a></p>
-</footer>
+</nav>
+
+<main role="main" class="container">
+    @RenderBody()
+</main>
 
 <script src="~/js/jquery-3.5.1.min.js"></script>
 <script src="~/js/bootstrap.bundle.min.js"></script>
-@await RenderSectionAsync("scripts", required: false)
+<script src="~/js/layout.js"></script>
+@await RenderSectionAsync("scripts", false)
 </body>
 </html>
