@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
 using PathFinder.Data.Models;
 using PathFinder.Data.Models.CharClass;
 using PathFinder.Data.Models.Users;
+using User = PathFinder.Data.Models.Users.User;
 
 namespace PathFinder.Data
 {
     public class DbObjects
     {
-        public static void Initial(AppDbContext context)
+        public static void Initial(AppDbContext context, IConfigurationRoot config)
         {
             if (!context.Races.Any())
             {
@@ -52,11 +54,12 @@ namespace PathFinder.Data
             
             if (!context.Users.Any())
             {
+                var admin = config.GetSection("Config").GetSection("AdminUser");
                 context.Add(new User
                 {
-                    Email = "user@user.ru",
-                    Name = "test_user",
-                    Password = "123123",
+                    Email = admin.GetSection("Login").Value,
+                    Password = admin.GetSection("Password").Value,
+                    Name = "admin",
                     Created = DateTime.Now,
                     Role = Roles["admin"]
                 });
