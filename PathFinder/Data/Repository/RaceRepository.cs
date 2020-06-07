@@ -16,19 +16,19 @@ namespace PathFinder.Data.Repository
 
         public IEnumerable<Race> Races => _appDbContext.Races;
 
-        public Race GetRace(int raceId)
-        {
-            return _appDbContext.Races.FirstOrDefault(r => r.Id == raceId);
-        }
-
+        public Race GetRace(int raceId) => _appDbContext.Races.FirstOrDefault(r => r.Id == raceId);
+        
         public void EditRace(Race race)
         {
             var currentRace = _appDbContext.Races.SingleOrDefault(r => r.Id == race.Id);
-
-            if (currentRace == null) return;
-
+            
+            if (currentRace == null)
+            {
+                return;
+            }
+            
             _appDbContext.Entry(currentRace).CurrentValues.SetValues(race);
-
+   
             _appDbContext.SaveChanges();
         }
 
@@ -41,9 +41,12 @@ namespace PathFinder.Data.Repository
         public void DeleteRace(int raceId)
         {
             var currentRace = _appDbContext.Races.SingleOrDefault(r => r.Id == raceId);
-
-            if (currentRace == null) return;
-
+            
+            if (currentRace == null)
+            {
+                return;
+            }
+            
             _appDbContext.Races.Remove(currentRace);
 
             _appDbContext.SaveChanges();

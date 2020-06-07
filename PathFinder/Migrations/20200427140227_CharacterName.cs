@@ -7,16 +7,16 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                "Name",
-                "Characters",
+                name: "Name",
+                table: "Characters",
                 nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                "Name",
-                "Characters");
+                name: "Name",
+                table: "Characters");
         }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PathFinder.Data.Interfaces;
 using PathFinder.Data.Models;
 using PathFinder.ViewModels;
+using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace PathFinder.Controllers
 {
@@ -23,18 +24,18 @@ namespace PathFinder.Controllers
         public IActionResult Create()
         {
             var races = _allRaces.Races.ToList();
-
+            
             var characterViewModel = new CharacterCreateViewModel
             {
                 CharClasses = _allClasses.CharClasses.ToList(),
                 Races = races.ToList()
             };
-
+            
             ViewData["Title"] = "Новый персонаж";
-
+            
             return View(characterViewModel);
         }
-
+        
         [HttpPost]
         public IActionResult Create(Character character)
         {
@@ -45,7 +46,7 @@ namespace PathFinder.Controllers
             }
 
             var races = _allRaces.Races.ToList();
-
+            
             var characterViewModel = new CharacterCreateViewModel
             {
                 Character = character,
@@ -55,7 +56,7 @@ namespace PathFinder.Controllers
 
             return View(characterViewModel);
         }
-
+        
         public IActionResult Complete()
         {
             ViewBag.Message = "Персонаж успешно создан!";
@@ -66,31 +67,36 @@ namespace PathFinder.Controllers
         public ViewResult List()
         {
             IEnumerable<Character> characters = _character.Characters.OrderBy(c => c.Id);
-
+            
             var characterViewModel = new CharacterListViewModel
             {
                 Characters = characters,
                 Races = _allRaces.Races.ToList(),
                 CharClasses = _allClasses.CharClasses.ToList()
             };
-
+            
             ViewData["Title"] = "Персонажи";
-
+            
             return View(characterViewModel);
         }
-
+        
         public IActionResult Delete(int? id)
         {
-            if (id == null) return NotFound();
-
+            if (id == null)
+            {
+                return NotFound();
+            }
+            
             var character = _character.Characters.FirstOrDefault(x => x.Id == id);
-            if (character == null) return NotFound();
+            if (character == null)
+            {
+                return NotFound();
+            }
 
             return View(character);
         }
-
-        [HttpPost]
-        [ActionName("Delete")]
+        
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {

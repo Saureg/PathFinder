@@ -8,16 +8,16 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<List<int>>(
-                "AlignmentIdList",
-                "CharClasses",
+                name: "AlignmentIdList",
+                table: "CharClasses",
                 nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                "AlignmentIdList",
-                "CharClasses");
+                name: "AlignmentIdList",
+                table: "CharClasses");
         }
     }
 }

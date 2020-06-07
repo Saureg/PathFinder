@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using PathFinder.Data.Models;
 using PathFinder.Data.Models.CharClass;
 using PathFinder.Data.Models.Users;
+using User = PathFinder.Data.Models.Users.User;
 
 namespace PathFinder.Data
 {
@@ -13,23 +14,24 @@ namespace PathFinder.Data
         public static void Initial(AppDbContext context, IConfigurationRoot config)
         {
             if (!context.Races.Any())
+            {
                 context.AddRange(new List<Race>
                 {
                     new Race
                     {
                         Name = "Люди",
-                        Description =
-                            @"Люди столь же разнообразны, как и условия их обитания. От смуглых кочевников южных земель до бледных варваров северных морей люди отличаются разнообразием цвета кожи, типом сложения и чертами лица. В целом чем ближе люди живут к экватору, тем темнее у них кожа."
+                        Description = @"Люди столь же разнообразны, как и условия их обитания. От смуглых кочевников южных земель до бледных варваров северных морей люди отличаются разнообразием цвета кожи, типом сложения и чертами лица. В целом чем ближе люди живут к экватору, тем темнее у них кожа."
                     },
                     new Race
                     {
                         Name = "Эльфы",
-                        Description =
-                            @"Эльфы обычно выше людей, но обладают более хрупким и изящным сложением и длинными заостренными ушами. У эльфов большие миндалевидные глаза с крупными, ярко окрашенными радужками. Хотя в эльфийских нарядах обычно отражается красота природы, эльфы, живущие в городах, одеваются по последней моде."
+                        Description = @"Эльфы обычно выше людей, но обладают более хрупким и изящным сложением и длинными заостренными ушами. У эльфов большие миндалевидные глаза с крупными, ярко окрашенными радужками. Хотя в эльфийских нарядах обычно отражается красота природы, эльфы, живущие в городах, одеваются по последней моде."
                     }
                 });
+            }
 
             if (!context.CharClasses.Any())
+            {
                 context.AddRange(new List<CharClass>
                 {
                     new CharClass
@@ -43,9 +45,13 @@ namespace PathFinder.Data
                         Description = "Служители боов"
                     }
                 });
+            }
 
-            if (!context.Roles.Any()) context.Roles.AddRange(Roles.Select(r => r.Value));
-
+            if (!context.Roles.Any())
+            {
+                context.Roles.AddRange(Roles.Select(r => r.Value));
+            }
+            
             if (!context.Users.Any())
             {
                 var admin = config.GetSection("Config").GetSection("AdminUser");
@@ -63,7 +69,7 @@ namespace PathFinder.Data
         }
 
         private static Dictionary<string, Role> _roles;
-
+        
         public static Dictionary<string, Role> Roles
         {
             get
@@ -83,11 +89,14 @@ namespace PathFinder.Data
                         new Role
                         {
                             Name = "user"
-                        }
+                        }    
                     };
-
+                    
                     _roles = new Dictionary<string, Role>();
-                    foreach (var element in list) _roles.Add(element.Name, element);
+                    foreach (var element in list)
+                    {
+                        _roles.Add(element.Name, element);
+                    }
                 }
 
                 return _roles;

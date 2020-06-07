@@ -6,6 +6,7 @@ namespace PathFinder.Views
     {
         public void OnGet()
         {
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PathFinder.Migrations
 {
@@ -7,78 +8,78 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                "FK_Alignment_CharClasses_CharClassId",
-                "Alignment");
+                name: "FK_Alignment_CharClasses_CharClassId",
+                table: "Alignment");
 
             migrationBuilder.DropIndex(
-                "IX_Alignment_CharClassId",
-                "Alignment");
+                name: "IX_Alignment_CharClassId",
+                table: "Alignment");
 
             migrationBuilder.DropColumn(
-                "AlignmentIdList",
-                "CharClasses");
+                name: "AlignmentIdList",
+                table: "CharClasses");
 
             migrationBuilder.DropColumn(
-                "CharClassId",
-                "Alignment");
+                name: "CharClassId",
+                table: "Alignment");
 
             migrationBuilder.CreateTable(
-                "ClassAlignment",
-                table => new
+                name: "ClassAlignment",
+                columns: table => new
                 {
                     AlignmentId = table.Column<int>(nullable: false),
                     CharClassId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClassAlignment", x => new {x.CharClassId, x.AlignmentId});
+                    table.PrimaryKey("PK_ClassAlignment", x => new { x.CharClassId, x.AlignmentId });
                     table.ForeignKey(
-                        "FK_ClassAlignment_Alignment_AlignmentId",
-                        x => x.AlignmentId,
-                        "Alignment",
-                        "Id",
+                        name: "FK_ClassAlignment_Alignment_AlignmentId",
+                        column: x => x.AlignmentId,
+                        principalTable: "Alignment",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        "FK_ClassAlignment_CharClasses_CharClassId",
-                        x => x.CharClassId,
-                        "CharClasses",
-                        "Id",
+                        name: "FK_ClassAlignment_CharClasses_CharClassId",
+                        column: x => x.CharClassId,
+                        principalTable: "CharClasses",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                "IX_ClassAlignment_AlignmentId",
-                "ClassAlignment",
-                "AlignmentId");
+                name: "IX_ClassAlignment_AlignmentId",
+                table: "ClassAlignment",
+                column: "AlignmentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                "ClassAlignment");
+                name: "ClassAlignment");
 
             migrationBuilder.AddColumn<int[]>(
-                "AlignmentIdList",
-                "CharClasses",
-                "integer[]",
+                name: "AlignmentIdList",
+                table: "CharClasses",
+                type: "integer[]",
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
-                "CharClassId",
-                "Alignment",
-                "integer",
+                name: "CharClassId",
+                table: "Alignment",
+                type: "integer",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                "IX_Alignment_CharClassId",
-                "Alignment",
-                "CharClassId");
+                name: "IX_Alignment_CharClassId",
+                table: "Alignment",
+                column: "CharClassId");
 
             migrationBuilder.AddForeignKey(
-                "FK_Alignment_CharClasses_CharClassId",
-                "Alignment",
-                "CharClassId",
-                "CharClasses",
+                name: "FK_Alignment_CharClasses_CharClassId",
+                table: "Alignment",
+                column: "CharClassId",
+                principalTable: "CharClasses",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }

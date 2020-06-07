@@ -1,209 +1,209 @@
 ﻿@model CharacterCreateViewModel
 
 <div class="row mb-5 m-3 p-3" xmlns="http://www.w3.org/1999/html">
-<form asp-controller="Character" asp-action="Create" method="post">
-<div class="col-12">
-    <h4>
-        <span class="text-muted">Основное</span>
-    </h4>
-</div>
-<div class="form-group">
-    <div class="col-12">
-        <label asp-for="@Model.Character.Name"></label>
-        <input asp-for="@Model.Character.Name" class="form-control">
-        <span asp-validation-for="@Model.Character.Name" class="text-danger"></span>
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-12">
-        <label asp-for="@Model.Character.Gender"></label>
-        @{
-            var genderSelectList = new List<SelectListItem> {new SelectListItem("Мужской", "Мужской"), new SelectListItem("Женский", "Женский")};
-        }
-        <select asp-for="@Model.Character.Gender" asp-items="@genderSelectList" class="custom-select"></select>
-        <span asp-validation-for="@Model.Character.Gender" class="text-danger"></span>
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-12">
-        <label asp-for="@Model.Character.Age"></label>
-        <input type="number" asp-for="@Model.Character.Age" class="form-control">
-        <span asp-validation-for="@Model.Character.Age" class="text-danger"></span>
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-12">
-        <label asp-for="@Model.Character.RaceId"></label>
-        <select asp-for="@Model.Character.RaceId" class="custom-select"></select>
-        <span asp-validation-for="@Model.Character.RaceId" class="text-danger"></span>
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-12">
-        <label asp-for="@Model.Character.CharClassId"></label>
-        @{
-            var classSelectList = Model
-                .CharClasses.Select(charClass =>
-                    new SelectListItem(charClass.Name, charClass.Id.ToString())).ToList();
-        }
-        <select asp-for="@Model.Character.CharClassId" asp-items="@classSelectList" class="custom-select"></select>
-        <span asp-validation-for="@Model.Character.CharClassId" class="text-danger"></span>
-    </div>
-</div>
+    <form asp-controller="Character" asp-action="Create" method="post">
+        <div class="col-12">
+            <h4>
+                <span class="text-muted">Основное</span>
+            </h4>
+        </div>
+        <div class="form-group">
+            <div class="col-12">
+                <label asp-for="@Model.Character.Name"></label>
+                <input asp-for="@Model.Character.Name" class="form-control">
+                <span asp-validation-for="@Model.Character.Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-12">
+                <label asp-for="@Model.Character.Gender"></label>
+                @{
+                    var genderSelectList = new List<SelectListItem> {new SelectListItem("Мужской", "Мужской"), new SelectListItem("Женский", "Женский")};
+                }
+                <select asp-for="@Model.Character.Gender" asp-items="@genderSelectList" class="custom-select"></select>
+                <span asp-validation-for="@Model.Character.Gender" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-12">
+                <label asp-for="@Model.Character.Age"></label>
+                <input type="number" asp-for="@Model.Character.Age" class="form-control">
+                <span asp-validation-for="@Model.Character.Age" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-12">
+                <label asp-for="@Model.Character.RaceId"></label>
+                <select asp-for="@Model.Character.RaceId" class="custom-select"></select>
+                <span asp-validation-for="@Model.Character.RaceId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-12">
+                <label asp-for="@Model.Character.CharClassId"></label>
+                @{
+                    var classSelectList = Model
+                        .CharClasses.Select(charClass =>
+                            new SelectListItem(charClass.Name, charClass.Id.ToString())).ToList();
+                }
+                <select asp-for="@Model.Character.CharClassId" asp-items="@classSelectList" class="custom-select"></select>
+                <span asp-validation-for="@Model.Character.CharClassId" class="text-danger"></span>
+            </div>
+        </div>
 
-<hr class="mb-4">
+        <hr class="mb-4">
 
-<div class="col-12">
-    <h4>
-        <span class="text-muted">Характеристики</span>
-    </h4>
-</div>
-<div class="form-group">
-    <div class="col-12">
-        <div class="mb-1">
-            <span>Пункты на покупку характеристик</span>
-            <input id="point_buy_input" disabled value="10"/>
+        <div class="col-12">
+            <h4>
+                <span class="text-muted">Характеристики</span>
+            </h4>
         </div>
-        <div class="custom-control custom-radio">
-            <input class="custom-control-input" type="radio" id="low_point" name="point_buy_radio" value="10" checked onclick="setPointBuy(this)"/>
-            <label class="custom-control-label" for="low_point">Низкое фентези</label>
+        <div class="form-group">
+            <div class="col-12">
+                <div class="mb-1">
+                    <span>Пункты на покупку характеристик</span>
+                    <input id="point_buy_input" disabled value="10"/>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="low_point" name="point_buy_radio" value="10" checked onclick="setPointBuy(this)"/>
+                    <label class="custom-control-label" for="low_point">Низкое фентези</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="normal_point" name="point_buy_radio" value="15" onclick="setPointBuy(this)"/>
+                    <label class="custom-control-label" for="normal_point">Обычное фентези</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="high_point" name="point_buy_radio" value="20" onclick="setPointBuy(this)"/>
+                    <label class="custom-control-label" for="high_point">Высокое фентези</label>
+                </div>
+                <div class="custom-control custom-radio">
+                    <input class="custom-control-input" type="radio" id="epic_point" name="point_buy_radio" value="25" onclick="setPointBuy(this)"/>
+                    <label class="custom-control-label" for="epic_point">Эпическое фентези</label>
+                </div>
+            </div>
         </div>
-        <div class="custom-control custom-radio">
-            <input class="custom-control-input" type="radio" id="normal_point" name="point_buy_radio" value="15" onclick="setPointBuy(this)"/>
-            <label class="custom-control-label" for="normal_point">Обычное фентези</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input class="custom-control-input" type="radio" id="high_point" name="point_buy_radio" value="20" onclick="setPointBuy(this)"/>
-            <label class="custom-control-label" for="high_point">Высокое фентези</label>
-        </div>
-        <div class="custom-control custom-radio">
-            <input class="custom-control-input" type="radio" id="epic_point" name="point_buy_radio" value="25" onclick="setPointBuy(this)"/>
-            <label class="custom-control-label" for="epic_point">Эпическое фентези</label>
-        </div>
-    </div>
-</div>
-<table class="table table-borderless">
-    <thead>
-    <tr>
-        <th scope="col">Характеристика</th>
-        <th scope="col">Пункты</th>
-        <th scope="col">Мод</th>
-        <th scope="col">Стоимость</th>
-        <th scope="col">Расовые</th>
-        <th scope="col">Пункты (итог)</th>
-        <th scope="col">Мод (итог)</th>
-    </tr>
-    </thead>
-    <tbody>
-    @{
-        var characteristicDictionary = new Dictionary<string, string>
-        {
-            {"str", "Сила"},
-            {"dex", "Ловкость"},
-            {"con", "Выносливость"},
-            {"int", "Интеллект"},
-            {"wis", "Мудрость"},
-            {"cha", "Харизма"}
-        };
-
-        foreach (var (key, value) in characteristicDictionary)
-        {
+        <table class="table table-borderless">
+            <thead>
             <tr>
-                <td>@value</td>
-                <td>
-                    <input name="point_input" type="number" min="7" max="18" value="10" onchange="editCharacteristic(this)"/>
-                </td>
-                <td>
-                    <span id="mod">0</span>
-                </td>
-                <td>
-                    <span class="coast" id="coast">0</span>
-                </td>
-                <td>
-                    <input type="radio" id="radio_trait_@key" name="radio_trait" hidden/>
-                    <span class="trait" id="racial_trait_@key">0</span>
-                </td>
-                <td>
-                    <span class="actual_points">10</span>
-                    @{
-                        switch (key)
-                        {
-                            case "str":
-                                <input class="point_input" type="number" asp-for="@Model.Character.Str" hidden/>
-                                break;
-                            case "dex":
-                                <input class="point_input" type="number" asp-for="@Model.Character.Dex" hidden/>
-                                break;
-                            case "con":
-                                <input class="point_input" type="number" asp-for="@Model.Character.Con" hidden/>
-                                break;
-                            case "int":
-                                <input class="point_input" type="number" asp-for="@Model.Character.Int" hidden/>
-                                break;
-                            case "wis":
-                                <input class="point_input" type="number" asp-for="@Model.Character.Wis" hidden/>
-                                break;
-                            case "cha":
-                                <input class="point_input" type="number" asp-for="@Model.Character.Cha" hidden/>
-                                break;
-                        }
-                    }
-                </td>
-                <td>
-                    <span id="actual_mod">0</span>
-                    @{
-                        switch (key)
-                        {
-                            case "str":
-                                <input class="mod_input" type="number" asp-for="@Model.Character.StrMod" hidden/>
-                                break;
-                            case "dex":
-                                <input class="mod_input" type="number" asp-for="@Model.Character.DexMod" hidden/>
-                                break;
-                            case "con":
-                                <input class="mod_input" type="number" asp-for="@Model.Character.ConMod" hidden/>
-                                break;
-                            case "int":
-                                <input class="mod_input" type="number" asp-for="@Model.Character.IntMod" hidden/>
-                                break;
-                            case "wis":
-                                <input class="mod_input" type="number" asp-for="@Model.Character.WisMod" hidden/>
-                                break;
-                            case "cha":
-                                <input class="mod_input" type="number" asp-for="@Model.Character.ChaMod" hidden/>
-                                break;
-                        }
-                    }
-                </td>
+                <th scope="col">Характеристика</th>
+                <th scope="col">Пункты</th>
+                <th scope="col">Мод</th>
+                <th scope="col">Стоимость</th>
+                <th scope="col">Расовые</th>
+                <th scope="col">Пункты (итог)</th>
+                <th scope="col">Мод (итог)</th>
             </tr>
-        }
-    }
-    </tbody>
-</table>
-<div class="col-12">
-    <p>
-        Осталось: <span id="remaining_points">10</span>
-        <span id="remaining_points_validation_message" hidden="hidden" class="alert alert-danger">Пунктов не должно быть меньше 0</span>
-    </p>
-</div>
+            </thead>
+            <tbody>
+            @{
+                var characteristicDictionary = new Dictionary<string, string>
+                {
+                    {"str", "Сила"},
+                    {"dex", "Ловкость"},
+                    {"con", "Выносливость"},
+                    {"int", "Интеллект"},
+                    {"wis", "Мудрость"},
+                    {"cha", "Харизма"}
+                };
 
-<hr class="mb-4">
-
-<div class="col-12">
-    <h4>
-        <span class="text-muted">Спасброски</span>
-    </h4>
-</div>
-<div class="form-group">
+                foreach (var (key, value) in characteristicDictionary)
+                {
+                    <tr>
+                        <td>@value</td>
+                        <td>
+                            <input name="point_input" type="number" min="7" max="18" value="10" onchange="editCharacteristic(this)"/>
+                        </td>
+                        <td>
+                            <span id="mod">0</span>
+                        </td>
+                        <td>
+                            <span class="coast" id="coast">0</span>
+                        </td>
+                        <td>
+                            <input type="radio" id="radio_trait_@key" name="radio_trait" hidden/>
+                            <span class="trait" id="racial_trait_@key">0</span>
+                        </td>
+                        <td>
+                            <span class="actual_points">10</span>
+                            @{
+                                switch (key)
+                                {
+                                    case "str":
+                                        <input class="point_input" type="number" asp-for="@Model.Character.Str" hidden/>
+                                        break;
+                                    case "dex":
+                                        <input class="point_input" type="number" asp-for="@Model.Character.Dex" hidden/>
+                                        break;
+                                    case "con":
+                                        <input class="point_input" type="number" asp-for="@Model.Character.Con" hidden/>
+                                        break;
+                                    case "int":
+                                        <input class="point_input" type="number" asp-for="@Model.Character.Int" hidden/>
+                                        break;
+                                    case "wis":
+                                        <input class="point_input" type="number" asp-for="@Model.Character.Wis" hidden/>
+                                        break;
+                                    case "cha":
+                                        <input class="point_input" type="number" asp-for="@Model.Character.Cha" hidden/>
+                                        break;
+                                }
+                            }
+                        </td>
+                        <td>
+                            <span id="actual_mod">0</span>
+                            @{
+                                switch (key)
+                                {
+                                    case "str":
+                                        <input class="mod_input" type="number" asp-for="@Model.Character.StrMod" hidden/>
+                                        break;
+                                    case "dex":
+                                        <input class="mod_input" type="number" asp-for="@Model.Character.DexMod" hidden/>
+                                        break;
+                                    case "con":
+                                        <input class="mod_input" type="number" asp-for="@Model.Character.ConMod" hidden/>
+                                        break;
+                                    case "int":
+                                        <input class="mod_input" type="number" asp-for="@Model.Character.IntMod" hidden/>
+                                        break;
+                                    case "wis":
+                                        <input class="mod_input" type="number" asp-for="@Model.Character.WisMod" hidden/>
+                                        break;
+                                    case "cha":
+                                        <input class="mod_input" type="number" asp-for="@Model.Character.ChaMod" hidden/>
+                                        break;
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            </tbody>
+        </table>
+        <div class="col-12">
+            <p>
+                Осталось: <span id="remaining_points">10</span>
+                <span id="remaining_points_validation_message" hidden="hidden" class="alert alert-danger">Пунктов не должно быть меньше 0</span>
+            </p>
+        </div>
+        
+    <hr class="mb-4">
+        
     <div class="col-12">
-
+        <h4>
+            <span class="text-muted">Спасброски</span>
+        </h4>
     </div>
-</div>
-
-<div class="col-12">
-    <input class="btn btn-success" id="create_button" type="submit" value="Создать персонажа"/>
-</div>
-</form>
+    <div class="form-group">
+        <div class="col-12">
+            
+        </div>
+    </div>
+        
+        <div class="col-12">
+            <input class="btn btn-success" id="create_button" type="submit" value="Создать персонажа"/>
+        </div>
+    </form>
 </div>
 
 @section scripts

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using PathFinder.Data.Interfaces;
 using PathFinder.Data.Models.CharClass;
 using PathFinder.ViewModels;
+using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace PathFinder.Controllers
 {
@@ -18,7 +19,7 @@ namespace PathFinder.Controllers
             _allClasses = allClasses;
             _allAlignments = allAlignments;
         }
-
+        
         public IActionResult List(int? id)
         {
             if (id != null)
@@ -26,7 +27,7 @@ namespace PathFinder.Controllers
                 var charClass = _allClasses.CharClasses.FirstOrDefault(x => x.Id == id);
                 return View("Item", charClass);
             }
-
+            
             IEnumerable<CharClass> charClasses = _allClasses.CharClasses.OrderBy(x => x.Id);
             ViewData["Title"] = "Классы";
             return View(charClasses);
@@ -41,7 +42,7 @@ namespace PathFinder.Controllers
             {
                 Alignments = _allAlignments.Alignments.ToList()
             };
-
+            
             return View(classViewModel);
         }
 
@@ -49,6 +50,7 @@ namespace PathFinder.Controllers
         [HttpPost]
         public IActionResult Create(CharClass charClass)
         {
+
             if (ModelState.IsValid)
             {
                 _allClasses.CreateClass(charClass);
@@ -60,10 +62,10 @@ namespace PathFinder.Controllers
                 CharClass = charClass,
                 Alignments = _allAlignments.Alignments.ToList()
             };
-
+            
             return View(classViewModel);
         }
-
+        
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int? classId)
         {
@@ -89,18 +91,21 @@ namespace PathFinder.Controllers
         public IActionResult Edit(int classId)
         {
             var charClass = _allClasses.GetClass(classId);
-            if (charClass == null) return NotFound();
+            if (charClass == null)
+            {
+                return NotFound();
+            }
 
             var classViewModel = new ClassViewModel
             {
                 Alignments = _allAlignments.Alignments.ToList(),
                 CharClass = charClass
             };
-
+            
             ViewData["Title"] = charClass.Name;
             return View(classViewModel);
         }
-
+        
         [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Edit(CharClass charClass)
@@ -116,7 +121,7 @@ namespace PathFinder.Controllers
                 CharClass = charClass,
                 Alignments = _allAlignments.Alignments.ToList()
             };
-
+            
             ViewData["Title"] = charClass.Name;
             return View(classViewModel);
         }

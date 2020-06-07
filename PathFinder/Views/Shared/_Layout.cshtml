@@ -33,7 +33,7 @@
             <li class="nav-item @Html.IsSelected("Character", "Create,Complete")">
                 <a class="nav-link" asp-controller="Character" asp-action="Create">Создать персонажа</a>
             </li>
-
+            
             @{
                 if (User.IsInRole("admin"))
                 {
@@ -45,9 +45,9 @@
                     </li>
                 }
             }
-
+            
         </ul>
-
+        
         <ul class="navbar-nav ml-md-auto">
             @{
                 if (!User.Identity.IsAuthenticated)

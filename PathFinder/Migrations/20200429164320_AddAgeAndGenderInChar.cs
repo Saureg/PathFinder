@@ -7,27 +7,27 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                "Age",
-                "Characters",
+                name: "Age",
+                table: "Characters",
                 maxLength: 3,
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<string>(
-                "Gender",
-                "Characters",
+                name: "Gender",
+                table: "Characters",
                 nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                "Age",
-                "Characters");
+                name: "Age",
+                table: "Characters");
 
             migrationBuilder.DropColumn(
-                "Gender",
-                "Characters");
+                name: "Gender",
+                table: "Characters");
         }
     }
 }
