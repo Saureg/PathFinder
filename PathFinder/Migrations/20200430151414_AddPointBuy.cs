@@ -7,8 +7,8 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<long>(
-                name: "PointBuy",
-                table: "Characters",
+                "PointBuy",
+                "Characters",
                 nullable: false,
                 defaultValue: 0L);
         }
@@ -16,8 +16,8 @@ namespace PathFinder.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "PointBuy",
-                table: "Characters");
+                "PointBuy",
+                "Characters");
         }
     }
 }

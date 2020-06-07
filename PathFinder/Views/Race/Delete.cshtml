@@ -9,10 +9,10 @@
         <h1>@Model.Name</h1>
         <p class="lead">Вы действительно хотите удалить эту расу?</p>
         <p>
-            <form method="post">
-                @Html.AntiForgeryToken()
-                <button type="submit" href="#" class="btn my-2 btn-outline-danger" asp-controller="Race" asp-action="Delete" asp-route-raceId="@Model.Id">Удалить</button>
-                <a asp-controller="Race" asp-action="Edit" asp-route-raceId="@Model.Id" class="btn my-2 btn-outline-dark">Отмена</a>
-            </form>
-        </div>
+        <form method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" href="#" class="btn my-2 btn-outline-danger" asp-controller="Race" asp-action="Delete" asp-route-raceId="@Model.Id">Удалить</button>
+            <a asp-controller="Race" asp-action="Edit" asp-route-raceId="@Model.Id" class="btn my-2 btn-outline-dark">Отмена</a>
+        </form>
+    </div>
 </div>

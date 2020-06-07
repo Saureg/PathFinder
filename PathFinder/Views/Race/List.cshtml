@@ -20,7 +20,9 @@
             foreach (var race in Model.AllRaces)
             {
                 <tr>
-                    <td><a asp-controller="Race" asp-action="Edit" asp-route-raceId="@race.Id">@race.Name</a></td>
+                    <td>
+                        <a asp-controller="Race" asp-action="Edit" asp-route-raceId="@race.Id">@race.Name</a>
+                    </td>
                 </tr>
             }
         }

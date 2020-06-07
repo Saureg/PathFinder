@@ -9,7 +9,7 @@ namespace PathFinder.ViewModels
         public Character Character { get; set; }
 
         public List<CharClass> CharClasses { get; set; }
-        
+
         public List<Race> Races { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace PathFinder.Data.Repository
     public class AlignmentRepository : IAllAlignments
     {
         private readonly AppDbContext _appDbContext;
-        
+
         public AlignmentRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;

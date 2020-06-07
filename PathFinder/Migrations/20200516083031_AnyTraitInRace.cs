@@ -7,8 +7,8 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "Races",
+                "Name",
+                "Races",
                 maxLength: 30,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -16,8 +16,8 @@ namespace PathFinder.Migrations
                 oldNullable: true);
 
             migrationBuilder.AddColumn<int>(
-                name: "AnyTrait",
-                table: "Races",
+                "AnyTrait",
+                "Races",
                 nullable: false,
                 defaultValue: 0);
         }
@@ -25,13 +25,13 @@ namespace PathFinder.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "AnyTrait",
-                table: "Races");
+                "AnyTrait",
+                "Races");
 
             migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "Races",
-                type: "text",
+                "Name",
+                "Races",
+                "text",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 30);

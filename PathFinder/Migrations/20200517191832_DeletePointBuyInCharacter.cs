@@ -7,55 +7,55 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "PointBuy",
-                table: "Characters");
+                "PointBuy",
+                "Characters");
 
             migrationBuilder.AlterColumn<int>(
-                name: "Wis",
-                table: "Characters",
+                "Wis",
+                "Characters",
                 nullable: false,
                 oldClrType: typeof(long),
                 oldType: "bigint");
 
             migrationBuilder.AlterColumn<int>(
-                name: "Str",
-                table: "Characters",
+                "Str",
+                "Characters",
                 nullable: false,
                 oldClrType: typeof(long),
                 oldType: "bigint");
 
             migrationBuilder.AlterColumn<int>(
-                name: "Int",
-                table: "Characters",
+                "Int",
+                "Characters",
                 nullable: false,
                 oldClrType: typeof(long),
                 oldType: "bigint");
 
             migrationBuilder.AlterColumn<string>(
-                name: "Gender",
-                table: "Characters",
+                "Gender",
+                "Characters",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "text",
                 oldNullable: true);
 
             migrationBuilder.AlterColumn<int>(
-                name: "Dex",
-                table: "Characters",
+                "Dex",
+                "Characters",
                 nullable: false,
                 oldClrType: typeof(long),
                 oldType: "bigint");
 
             migrationBuilder.AlterColumn<int>(
-                name: "Con",
-                table: "Characters",
+                "Con",
+                "Characters",
                 nullable: false,
                 oldClrType: typeof(long),
                 oldType: "bigint");
 
             migrationBuilder.AlterColumn<int>(
-                name: "Cha",
-                table: "Characters",
+                "Cha",
+                "Characters",
                 nullable: false,
                 oldClrType: typeof(long),
                 oldType: "bigint");
@@ -64,58 +64,58 @@ namespace PathFinder.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<long>(
-                name: "Wis",
-                table: "Characters",
-                type: "bigint",
+                "Wis",
+                "Characters",
+                "bigint",
                 nullable: false,
                 oldClrType: typeof(int));
 
             migrationBuilder.AlterColumn<long>(
-                name: "Str",
-                table: "Characters",
-                type: "bigint",
+                "Str",
+                "Characters",
+                "bigint",
                 nullable: false,
                 oldClrType: typeof(int));
 
             migrationBuilder.AlterColumn<long>(
-                name: "Int",
-                table: "Characters",
-                type: "bigint",
+                "Int",
+                "Characters",
+                "bigint",
                 nullable: false,
                 oldClrType: typeof(int));
 
             migrationBuilder.AlterColumn<string>(
-                name: "Gender",
-                table: "Characters",
-                type: "text",
+                "Gender",
+                "Characters",
+                "text",
                 nullable: true,
                 oldClrType: typeof(string));
 
             migrationBuilder.AlterColumn<long>(
-                name: "Dex",
-                table: "Characters",
-                type: "bigint",
+                "Dex",
+                "Characters",
+                "bigint",
                 nullable: false,
                 oldClrType: typeof(int));
 
             migrationBuilder.AlterColumn<long>(
-                name: "Con",
-                table: "Characters",
-                type: "bigint",
+                "Con",
+                "Characters",
+                "bigint",
                 nullable: false,
                 oldClrType: typeof(int));
 
             migrationBuilder.AlterColumn<long>(
-                name: "Cha",
-                table: "Characters",
-                type: "bigint",
+                "Cha",
+                "Characters",
+                "bigint",
                 nullable: false,
                 oldClrType: typeof(int));
 
             migrationBuilder.AddColumn<long>(
-                name: "PointBuy",
-                table: "Characters",
-                type: "bigint",
+                "PointBuy",
+                "Characters",
+                "bigint",
                 nullable: false,
                 defaultValue: 0L);
         }

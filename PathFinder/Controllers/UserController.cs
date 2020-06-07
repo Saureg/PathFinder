@@ -18,24 +18,21 @@ namespace PathFinder.Controllers
             _allUsers = allUsers;
             _allRoles = allRoles;
         }
-        
+
         [Authorize(Roles = "admin")]
         public IActionResult Index()
         {
             var users = _allUsers.Users.Include(u => u.Role).OrderBy(u => u.Id).ToList();
-            
+
             return View(users);
         }
-        
+
         public IActionResult Profile()
         {
             var user = _allUsers.Users.Include(r => r.Role).FirstOrDefault(u => u.Email == User.Identity.Name);
-            
-            if (user == null)
-            {
-                return NotFound();
-            }
-            
+
+            if (user == null) return NotFound();
+
             var profileViewModel = new ProfileViewModel
             {
                 Email = user.Email,
@@ -53,19 +50,14 @@ namespace PathFinder.Controllers
         {
             var currentUser = _allUsers.Users.Include(r => r.Role).FirstOrDefault(u => u.Email == User.Identity.Name);
 
-            if (currentUser == null)
-            {
-                return NotFound();
-            }
+            if (currentUser == null) return NotFound();
 
             currentUser.Email = profileViewModel.Email;
             currentUser.Name = profileViewModel.Name;
 
-            if (profileViewModel.NewPassword != null && profileViewModel.NewPassword == profileViewModel.ConfirmPassword)
-            {
-                currentUser.Password = profileViewModel.NewPassword;
-            }
-            
+            if (profileViewModel.NewPassword != null && profileViewModel.NewPassword == profileViewModel.ConfirmPassword
+            ) currentUser.Password = profileViewModel.NewPassword;
+
             if (ModelState.IsValid)
             {
                 ViewData["ProfileSuccess"] = true;
@@ -77,7 +69,7 @@ namespace PathFinder.Controllers
             }
 
             profileViewModel.RoleName = currentUser.Role.Name;
-                
+
             ViewData["Title"] = "Профиль";
             return View(profileViewModel);
         }
@@ -86,15 +78,15 @@ namespace PathFinder.Controllers
         public IActionResult Create()
         {
             ViewData["Title"] = "Новый пользователь";
-            
+
             var userViewModel = new UserViewModel
             {
-                Roles = _allRoles.Roles.OrderBy(x=>x.Name).ToList()
+                Roles = _allRoles.Roles.OrderBy(x => x.Name).ToList()
             };
-            
+
             return View(userViewModel);
         }
-        
+
         [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Create(User user)
@@ -108,12 +100,12 @@ namespace PathFinder.Controllers
             var userViewModel = new UserViewModel
             {
                 User = user,
-                Roles = _allRoles.Roles.OrderBy(x=>x.Name).ToList()
+                Roles = _allRoles.Roles.OrderBy(x => x.Name).ToList()
             };
-            
+
             return View(userViewModel);
         }
-        
+
         [Authorize(Roles = "admin")]
         public IActionResult Complete(int userId)
         {
@@ -123,20 +115,17 @@ namespace PathFinder.Controllers
         public IActionResult Edit(int userId)
         {
             var user = _allUsers.GetUser(userId);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            
+            if (user == null) return NotFound();
+
             var userViewModel = new UserViewModel
             {
                 User = user,
-                Roles = _allRoles.Roles.OrderBy(x=>x.Name).ToList()
+                Roles = _allRoles.Roles.OrderBy(x => x.Name).ToList()
             };
 
             return View(userViewModel);
         }
-        
+
         [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult Edit(User user)
@@ -150,17 +139,17 @@ namespace PathFinder.Controllers
             var userViewModel = new UserViewModel
             {
                 User = user,
-                Roles = _allRoles.Roles.OrderBy(x=>x.Name).ToList()
+                Roles = _allRoles.Roles.OrderBy(x => x.Name).ToList()
             };
-            
+
             return View(userViewModel);
         }
-        
+
         [Authorize(Roles = "admin")]
         public IActionResult Delete(int? userId)
         {
             if (userId == null) return NotFound();
-            
+
             var user = _allUsers.Users.FirstOrDefault(x => x.Id == userId);
             if (user == null) return NotFound();
 

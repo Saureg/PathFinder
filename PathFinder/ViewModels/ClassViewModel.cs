@@ -7,9 +7,9 @@ namespace PathFinder.ViewModels
     public class ClassViewModel
     {
         public CharClass CharClass { get; set; }
-        
+
         public List<Alignment> Alignments { get; set; }
-        
+
         public List<Alignment> SelectedAlignments { get; set; }
     }
 }
