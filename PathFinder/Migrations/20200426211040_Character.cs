@@ -8,34 +8,35 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Characters",
-                columns: table => new
+                "Characters",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy",
+                            NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     RaceId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Characters", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Characters_Races_RaceId",
-                        column: x => x.RaceId,
-                        principalTable: "Races",
-                        principalColumn: "Id",
+                        "FK_Characters_Races_RaceId",
+                        x => x.RaceId,
+                        "Races",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Characters_RaceId",
-                table: "Characters",
-                column: "RaceId");
+                "IX_Characters_RaceId",
+                "Characters",
+                "RaceId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Characters");
+                "Characters");
         }
     }
 }

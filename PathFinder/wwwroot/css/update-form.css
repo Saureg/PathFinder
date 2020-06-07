@@ -1,0 +1,19 @@
+﻿html,
+body {
+    height: 100%;
+}
+
+body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.form-update {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}

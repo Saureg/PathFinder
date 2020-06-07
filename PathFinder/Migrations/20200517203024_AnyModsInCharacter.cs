@@ -7,38 +7,38 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "ChaMod",
-                table: "Characters",
+                "ChaMod",
+                "Characters",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "ConMod",
-                table: "Characters",
+                "ConMod",
+                "Characters",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "DexMod",
-                table: "Characters",
+                "DexMod",
+                "Characters",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "IntMod",
-                table: "Characters",
+                "IntMod",
+                "Characters",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "StrMod",
-                table: "Characters",
+                "StrMod",
+                "Characters",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "WisMod",
-                table: "Characters",
+                "WisMod",
+                "Characters",
                 nullable: false,
                 defaultValue: 0);
         }
@@ -46,28 +46,28 @@ namespace PathFinder.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "ChaMod",
-                table: "Characters");
+                "ChaMod",
+                "Characters");
 
             migrationBuilder.DropColumn(
-                name: "ConMod",
-                table: "Characters");
+                "ConMod",
+                "Characters");
 
             migrationBuilder.DropColumn(
-                name: "DexMod",
-                table: "Characters");
+                "DexMod",
+                "Characters");
 
             migrationBuilder.DropColumn(
-                name: "IntMod",
-                table: "Characters");
+                "IntMod",
+                "Characters");
 
             migrationBuilder.DropColumn(
-                name: "StrMod",
-                table: "Characters");
+                "StrMod",
+                "Characters");
 
             migrationBuilder.DropColumn(
-                name: "WisMod",
-                table: "Characters");
+                "WisMod",
+                "Characters");
         }
     }
 }

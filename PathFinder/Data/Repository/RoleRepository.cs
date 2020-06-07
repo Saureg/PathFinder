@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using PathFinder.Data.Interfaces;
-using PathFinder.Data.Models.Alignment;
+using PathFinder.Data.Models.Users;
 
 namespace PathFinder.Data.Repository
 {
-    public class AlignmentRepository : IAllAlignments
+    public class RoleRepository : IAllRoles
     {
         private readonly AppDbContext _appDbContext;
 
-        public AlignmentRepository(AppDbContext appDbContext)
+        public RoleRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
         }
 
-        public IEnumerable<Alignment> Alignments => _appDbContext.Alignments;
+        public IEnumerable<Role> Roles => _appDbContext.Roles;
     }
 }

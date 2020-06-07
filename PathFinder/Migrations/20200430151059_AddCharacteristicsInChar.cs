@@ -7,38 +7,38 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<long>(
-                name: "Cha",
-                table: "Characters",
+                "Cha",
+                "Characters",
                 nullable: false,
                 defaultValue: 0L);
 
             migrationBuilder.AddColumn<long>(
-                name: "Con",
-                table: "Characters",
+                "Con",
+                "Characters",
                 nullable: false,
                 defaultValue: 0L);
 
             migrationBuilder.AddColumn<long>(
-                name: "Dex",
-                table: "Characters",
+                "Dex",
+                "Characters",
                 nullable: false,
                 defaultValue: 0L);
 
             migrationBuilder.AddColumn<long>(
-                name: "Int",
-                table: "Characters",
+                "Int",
+                "Characters",
                 nullable: false,
                 defaultValue: 0L);
 
             migrationBuilder.AddColumn<long>(
-                name: "Str",
-                table: "Characters",
+                "Str",
+                "Characters",
                 nullable: false,
                 defaultValue: 0L);
 
             migrationBuilder.AddColumn<long>(
-                name: "Wis",
-                table: "Characters",
+                "Wis",
+                "Characters",
                 nullable: false,
                 defaultValue: 0L);
         }
@@ -46,28 +46,28 @@ namespace PathFinder.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Cha",
-                table: "Characters");
+                "Cha",
+                "Characters");
 
             migrationBuilder.DropColumn(
-                name: "Con",
-                table: "Characters");
+                "Con",
+                "Characters");
 
             migrationBuilder.DropColumn(
-                name: "Dex",
-                table: "Characters");
+                "Dex",
+                "Characters");
 
             migrationBuilder.DropColumn(
-                name: "Int",
-                table: "Characters");
+                "Int",
+                "Characters");
 
             migrationBuilder.DropColumn(
-                name: "Str",
-                table: "Characters");
+                "Str",
+                "Characters");
 
             migrationBuilder.DropColumn(
-                name: "Wis",
-                table: "Characters");
+                "Wis",
+                "Characters");
         }
     }
 }

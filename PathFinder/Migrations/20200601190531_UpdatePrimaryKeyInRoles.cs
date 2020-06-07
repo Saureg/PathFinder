@@ -8,34 +8,34 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Users_Roles_RoleId",
-                table: "Users");
+                "FK_Users_Roles_RoleId",
+                "Users");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_Roles",
-                table: "Roles");
+                "PK_Roles",
+                "Roles");
 
             migrationBuilder.DropColumn(
-                name: "Id",
-                table: "Roles");
+                "Id",
+                "Roles");
 
             migrationBuilder.AddColumn<int>(
-                name: "RoleId",
-                table: "Roles",
-                nullable: false,
-                defaultValue: 0)
+                    "RoleId",
+                    "Roles",
+                    nullable: false,
+                    defaultValue: 0)
                 .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_Roles",
-                table: "Roles",
-                column: "RoleId");
+                "PK_Roles",
+                "Roles",
+                "RoleId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Users_Roles_RoleId",
-                table: "Users",
-                column: "RoleId",
-                principalTable: "Roles",
+                "FK_Users_Roles_RoleId",
+                "Users",
+                "RoleId",
+                "Roles",
                 principalColumn: "RoleId",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -43,35 +43,35 @@ namespace PathFinder.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Users_Roles_RoleId",
-                table: "Users");
+                "FK_Users_Roles_RoleId",
+                "Users");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_Roles",
-                table: "Roles");
+                "PK_Roles",
+                "Roles");
 
             migrationBuilder.DropColumn(
-                name: "RoleId",
-                table: "Roles");
+                "RoleId",
+                "Roles");
 
             migrationBuilder.AddColumn<int>(
-                name: "Id",
-                table: "Roles",
-                type: "integer",
-                nullable: false,
-                defaultValue: 0)
+                    "Id",
+                    "Roles",
+                    "integer",
+                    nullable: false,
+                    defaultValue: 0)
                 .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_Roles",
-                table: "Roles",
-                column: "Id");
+                "PK_Roles",
+                "Roles",
+                "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Users_Roles_RoleId",
-                table: "Users",
-                column: "RoleId",
-                principalTable: "Roles",
+                "FK_Users_Roles_RoleId",
+                "Users",
+                "RoleId",
+                "Roles",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }

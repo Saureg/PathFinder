@@ -7,27 +7,27 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_ClassAlignment_Alignment_AlignmentId",
-                table: "ClassAlignment");
+                "FK_ClassAlignment_Alignment_AlignmentId",
+                "ClassAlignment");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_Alignment",
-                table: "Alignment");
+                "PK_Alignment",
+                "Alignment");
 
             migrationBuilder.RenameTable(
-                name: "Alignment",
+                "Alignment",
                 newName: "Alignments");
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_Alignments",
-                table: "Alignments",
-                column: "Id");
+                "PK_Alignments",
+                "Alignments",
+                "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_ClassAlignment_Alignments_AlignmentId",
-                table: "ClassAlignment",
-                column: "AlignmentId",
-                principalTable: "Alignments",
+                "FK_ClassAlignment_Alignments_AlignmentId",
+                "ClassAlignment",
+                "AlignmentId",
+                "Alignments",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -35,27 +35,27 @@ namespace PathFinder.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_ClassAlignment_Alignments_AlignmentId",
-                table: "ClassAlignment");
+                "FK_ClassAlignment_Alignments_AlignmentId",
+                "ClassAlignment");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_Alignments",
-                table: "Alignments");
+                "PK_Alignments",
+                "Alignments");
 
             migrationBuilder.RenameTable(
-                name: "Alignments",
+                "Alignments",
                 newName: "Alignment");
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_Alignment",
-                table: "Alignment",
-                column: "Id");
+                "PK_Alignment",
+                "Alignment",
+                "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_ClassAlignment_Alignment_AlignmentId",
-                table: "ClassAlignment",
-                column: "AlignmentId",
-                principalTable: "Alignment",
+                "FK_ClassAlignment_Alignment_AlignmentId",
+                "ClassAlignment",
+                "AlignmentId",
+                "Alignment",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }

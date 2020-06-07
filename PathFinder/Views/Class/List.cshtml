@@ -9,16 +9,18 @@
                     <h5 class="card-title text-primary">Новый класс</h5>
                     <a asp-controller="Class" asp-action="Create" class="btn btn-outline-primary">Создать</a>
                 </div>
-            </div>        
+            </div>
         }
     }
-    
+
     @{
         foreach (var charClass in Model)
         {
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><a asp-controller="Class" asp-action="List" asp-route-id="@charClass.Id">@charClass.Name</a></h5>
+                    <h5 class="card-title">
+                        <a asp-controller="Class" asp-action="List" asp-route-id="@charClass.Id">@charClass.Name</a>
+                    </h5>
                     <p class="card-text">@charClass.ShortDescription</p>
                     @{
                         if (User.IsInRole("admin"))

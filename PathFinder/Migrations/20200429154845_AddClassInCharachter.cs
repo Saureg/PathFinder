@@ -7,28 +7,28 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "CharClasses",
+                "Name",
+                "CharClasses",
                 nullable: true,
                 oldClrType: typeof(int),
                 oldType: "integer");
 
             migrationBuilder.AddColumn<int>(
-                name: "CharClassId",
-                table: "Characters",
+                "CharClassId",
+                "Characters",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Characters_CharClassId",
-                table: "Characters",
-                column: "CharClassId");
+                "IX_Characters_CharClassId",
+                "Characters",
+                "CharClassId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Characters_CharClasses_CharClassId",
-                table: "Characters",
-                column: "CharClassId",
-                principalTable: "CharClasses",
+                "FK_Characters_CharClasses_CharClassId",
+                "Characters",
+                "CharClassId",
+                "CharClasses",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -36,21 +36,21 @@ namespace PathFinder.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Characters_CharClasses_CharClassId",
-                table: "Characters");
+                "FK_Characters_CharClasses_CharClassId",
+                "Characters");
 
             migrationBuilder.DropIndex(
-                name: "IX_Characters_CharClassId",
-                table: "Characters");
+                "IX_Characters_CharClassId",
+                "Characters");
 
             migrationBuilder.DropColumn(
-                name: "CharClassId",
-                table: "Characters");
+                "CharClassId",
+                "Characters");
 
             migrationBuilder.AlterColumn<int>(
-                name: "Name",
-                table: "CharClasses",
-                type: "integer",
+                "Name",
+                "CharClasses",
+                "integer",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldNullable: true);

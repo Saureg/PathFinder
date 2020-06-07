@@ -35,6 +35,7 @@ namespace PathFinder
             services.AddTransient<IAllClasses, CharClassRepository>();
             services.AddTransient<IAllAlignments, AlignmentRepository>();
             services.AddTransient<IAllUsers, UserRepository>();
+            services.AddTransient<IAllRoles, RoleRepository>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -48,7 +49,7 @@ namespace PathFinder
                     options.LoginPath = new PathString("/Account/Login");
                     options.AccessDeniedPath = new PathString("/Account/Login");
                 });
-            
+
             services.AddMemoryCache();
             services.AddSession();
 
@@ -67,9 +68,9 @@ namespace PathFinder
 
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
             app.UseMvc(routes => { routes.MapRoute("default", "{controller=Home}/{action=Index}"); });
-            
+
             using (var scope = app.ApplicationServices.CreateScope())
             {
                 var content = scope.ServiceProvider.GetRequiredService<AppDbContext>();

@@ -8,8 +8,8 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "Characters",
+                "Name",
+                "Characters",
                 maxLength: 30,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -17,30 +17,28 @@ namespace PathFinder.Migrations
                 oldNullable: true);
 
             migrationBuilder.CreateTable(
-                name: "CharClasses",
-                columns: table => new
+                "CharClasses",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy",
+                            NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Image = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CharClasses", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_CharClasses", x => x.Id); });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CharClasses");
+                "CharClasses");
 
             migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "Characters",
-                type: "text",
+                "Name",
+                "Characters",
+                "text",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 30);

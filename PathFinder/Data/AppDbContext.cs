@@ -11,7 +11,7 @@ namespace PathFinder.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-        
+
         public DbSet<Race> Races { get; set; }
         public DbSet<CharClass> CharClasses { get; set; }
         public DbSet<Character> Characters { get; set; }

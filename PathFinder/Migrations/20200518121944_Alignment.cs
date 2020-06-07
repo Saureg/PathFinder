@@ -8,8 +8,8 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "CharClasses",
+                "Name",
+                "CharClasses",
                 maxLength: 30,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -17,16 +17,17 @@ namespace PathFinder.Migrations
                 oldNullable: true);
 
             migrationBuilder.AddColumn<string>(
-                name: "Role",
-                table: "CharClasses",
+                "Role",
+                "CharClasses",
                 nullable: true);
 
             migrationBuilder.CreateTable(
-                name: "Alignment",
-                columns: table => new
+                "Alignment",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy",
+                            NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: true),
                     CharClassId = table.Column<int>(nullable: true)
                 },
@@ -34,32 +35,32 @@ namespace PathFinder.Migrations
                 {
                     table.PrimaryKey("PK_Alignment", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Alignment_CharClasses_CharClassId",
-                        column: x => x.CharClassId,
-                        principalTable: "CharClasses",
-                        principalColumn: "Id",
+                        "FK_Alignment_CharClasses_CharClassId",
+                        x => x.CharClassId,
+                        "CharClasses",
+                        "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Alignment_CharClassId",
-                table: "Alignment",
-                column: "CharClassId");
+                "IX_Alignment_CharClassId",
+                "Alignment",
+                "CharClassId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Alignment");
+                "Alignment");
 
             migrationBuilder.DropColumn(
-                name: "Role",
-                table: "CharClasses");
+                "Role",
+                "CharClasses");
 
             migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "CharClasses",
-                type: "text",
+                "Name",
+                "CharClasses",
+                "text",
                 nullable: true,
                 oldClrType: typeof(string),
                 oldMaxLength: 30);
