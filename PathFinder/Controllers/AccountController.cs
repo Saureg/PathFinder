@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using PathFinder.Data.Interfaces;
 using PathFinder.Data.Models.Users;
 using PathFinder.ViewModels.User;
-using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace PathFinder.Controllers
 {
@@ -42,12 +41,11 @@ namespace PathFinder.Controllers
                 }
 
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
-
             }
 
             return View(loginModel);
         }
-        
+
         private async Task Authenticate(User user)
         {
             var claims = new List<Claim>
@@ -58,10 +56,10 @@ namespace PathFinder.Controllers
 
             var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
                 ClaimsIdentity.DefaultRoleClaimType);
-            
+
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
- 
+
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

@@ -47,7 +47,7 @@
                             var classAlignmentCounter = i;
 
                             var checkedAlignmentCheckbox = string.Empty;
-                            if (Model.CharClass != null & Model.CharClass?.ClassAlignments != null)
+                            if ((Model.CharClass != null) & (Model.CharClass?.ClassAlignments != null))
                             {
                                 foreach (var classAlignment in Model.CharClass.ClassAlignments)
                                 {
@@ -55,19 +55,19 @@
                                     {
                                         checkedAlignmentCheckbox = "checked";
                                     }
-                                }   
+                                }
                             }
                         }
                         <input type="checkbox" id="alignment_@i" name="alignment_checkbox" @checkedAlignmentCheckbox/>
-                        <input hidden_value="" class="alignment_hidden_input"  hidden value="@Model.Alignments[i].Id"/>
-                        
+                        <input hidden_value="" class="alignment_hidden_input" hidden value="@Model.Alignments[i].Id"/>
+
                         @{
                             if (Model.CharClass != null)
                             {
-                                <input hidden class="alignment_class_id_hidden_input"  value="@Model.CharClass.Id"/>        
+                                <input hidden class="alignment_class_id_hidden_input" value="@Model.CharClass.Id"/>
                             }
                         }
-                        
+
                     </div>
                 }
             </div>

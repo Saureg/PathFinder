@@ -8,34 +8,32 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "RoleId",
-                table: "Users",
+                "RoleId",
+                "Users",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.CreateTable(
-                name: "Roles",
-                columns: table => new
+                "Roles",
+                table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy",
+                            NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Roles", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Roles", x => x.Id); });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_RoleId",
-                table: "Users",
-                column: "RoleId");
+                "IX_Users_RoleId",
+                "Users",
+                "RoleId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Users_Roles_RoleId",
-                table: "Users",
-                column: "RoleId",
-                principalTable: "Roles",
+                "FK_Users_Roles_RoleId",
+                "Users",
+                "RoleId",
+                "Roles",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -43,19 +41,19 @@ namespace PathFinder.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Users_Roles_RoleId",
-                table: "Users");
+                "FK_Users_Roles_RoleId",
+                "Users");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                "Roles");
 
             migrationBuilder.DropIndex(
-                name: "IX_Users_RoleId",
-                table: "Users");
+                "IX_Users_RoleId",
+                "Users");
 
             migrationBuilder.DropColumn(
-                name: "RoleId",
-                table: "Users");
+                "RoleId",
+                "Users");
         }
     }
 }

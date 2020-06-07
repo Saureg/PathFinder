@@ -7,38 +7,38 @@ namespace PathFinder.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "ChaTrait",
-                table: "Races",
+                "ChaTrait",
+                "Races",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "ConTrait",
-                table: "Races",
+                "ConTrait",
+                "Races",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "DexTrait",
-                table: "Races",
+                "DexTrait",
+                "Races",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "IntTrait",
-                table: "Races",
+                "IntTrait",
+                "Races",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "StrTrait",
-                table: "Races",
+                "StrTrait",
+                "Races",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.AddColumn<int>(
-                name: "WisTrait",
-                table: "Races",
+                "WisTrait",
+                "Races",
                 nullable: false,
                 defaultValue: 0);
         }
@@ -46,28 +46,28 @@ namespace PathFinder.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "ChaTrait",
-                table: "Races");
+                "ChaTrait",
+                "Races");
 
             migrationBuilder.DropColumn(
-                name: "ConTrait",
-                table: "Races");
+                "ConTrait",
+                "Races");
 
             migrationBuilder.DropColumn(
-                name: "DexTrait",
-                table: "Races");
+                "DexTrait",
+                "Races");
 
             migrationBuilder.DropColumn(
-                name: "IntTrait",
-                table: "Races");
+                "IntTrait",
+                "Races");
 
             migrationBuilder.DropColumn(
-                name: "StrTrait",
-                table: "Races");
+                "StrTrait",
+                "Races");
 
             migrationBuilder.DropColumn(
-                name: "WisTrait",
-                table: "Races");
+                "WisTrait",
+                "Races");
         }
     }
 }
