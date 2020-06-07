@@ -1,0 +1,13 @@
+﻿@model int
+
+<div class="jumbotron text-center">
+    <div class="container">
+        <h1>Пользователь успешно сохранен!</h1>
+        <p class="lead">Перейти к списку пользователей?</p>
+        <p>
+        <form>
+            <button class="btn my-2 btn-outline-success" asp-controller="User" asp-action="Index">Да</button>
+            <a asp-controller="User" asp-action="Edit" asp-route-userId="@Model" class="btn my-2 btn-outline-dark">Нет</a>
+        </form>
+    </div>
+</div>

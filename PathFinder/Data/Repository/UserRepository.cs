@@ -33,5 +33,26 @@ namespace PathFinder.Data.Repository
             
             _appDbContext.SaveChanges();
         }
+
+        public void CreateUser(User user)
+        {
+            _appDbContext.Users.Add(user);
+
+            _appDbContext.SaveChanges();
+        }
+        
+        public void DeleteUser(int userId)
+        {
+            var currentUser = _appDbContext.Users.SingleOrDefault(u => u.Id == userId);
+            
+            if (currentUser == null)
+            {
+                return;
+            }
+            
+            _appDbContext.Users.Remove(currentUser);
+
+            _appDbContext.SaveChanges();
+        }
     }
 }

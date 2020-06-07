@@ -1,0 +1,13 @@
+﻿@model PathFinder.ViewModels.User.UserViewModel
+
+@section styleshets
+{
+    <link href="~/css/update-form.css" rel="stylesheet"/>
+}
+
+<div class="py-5">
+    <form class="form-update" asp-action="Create" method="Post">
+        @await Html.PartialAsync("_CreateOrEditPartialView")
+    </form>
+</div>
+

@@ -11,5 +11,9 @@ namespace PathFinder.Data.Interfaces
         User GetUser(int userId);
 
         void EditUser(User user);
+
+        void CreateUser(User user);
+
+        void DeleteUser(int userId);
     }
 }
