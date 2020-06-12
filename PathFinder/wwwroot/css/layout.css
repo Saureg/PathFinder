@@ -51,6 +51,10 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
+.nav-underline {
+    background-color: #ffffff;
+}
+
 .nav-underline .nav-link {
     padding-top: .75rem;
     padding-bottom: .75rem;

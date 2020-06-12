@@ -11,5 +11,7 @@ namespace PathFinder.ViewModels
         public IEnumerable<Race> Races { get; set; }
 
         public IEnumerable<CharClass> CharClasses { get; set; }
+        
+        public IEnumerable<Data.Models.Users.User> Users { get; set; }
     }
 }

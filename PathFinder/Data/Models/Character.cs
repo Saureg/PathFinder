@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using User = PathFinder.Data.Models.Users.User;
 
 namespace PathFinder.Data.Models
 {
@@ -75,5 +76,9 @@ namespace PathFinder.Data.Models
 
         [Range(-2, 6, ErrorMessage = "Значение должно быть в диапазоне от -2 до 6")]
         public int ChaMod { get; set; }
+        
+        public int UserId { get; set; }
+
+        public virtual User User { get; set; }
     }
 }
