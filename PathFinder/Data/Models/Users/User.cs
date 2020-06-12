@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace PathFinder.Data.Models.Users
@@ -28,5 +29,7 @@ namespace PathFinder.Data.Models.Users
         public int RoleId { get; set; }
 
         [Display(Name = "Роль")] public Role Role { get; set; }
+        
+        public virtual List<Character> Characters { get; set; }
     }
 }

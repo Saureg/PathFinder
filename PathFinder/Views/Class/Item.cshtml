@@ -28,20 +28,23 @@
                 <p>
                     <strong><label asp-for="ClassAlignments"></label>: </strong>
 
-                    @for (var i = 0; i < Model.ClassAlignments.Count; i++)
+                    @if (Model.ClassAlignments != null)
                     {
-                        var alignment = Model.ClassAlignments[i];
-                        <em>@alignment</em>
-                        if (i != Model.ClassAlignments.Count - 1)
+                        @for (var i = 0; i < Model.ClassAlignments.Count; i++)
                         {
-                            <em>; </em>
-                        }
-                        else
-                        {
-                            <em>.</em>
-                        }
+                            var alignment = Model.ClassAlignments[i];
+                            <em>@alignment</em>
+                            if (i != Model.ClassAlignments.Count - 1)
+                            {
+                                <em>; </em>
+                            }
+                            else
+                            {
+                                <em>.</em>
+                            }
+                        }    
                     }
-
+                    
                 </p>
             </div>
         </div>
