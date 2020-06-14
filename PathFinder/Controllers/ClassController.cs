@@ -23,7 +23,8 @@ namespace PathFinder.Controllers
         {
             if (id != null)
             {
-                var charClass = _allClasses.CharClasses.FirstOrDefault(x => x.Id == id);
+                var charClass = _allClasses.GetClass(id.Value);
+                ViewData["Title"] = charClass.Name;
                 return View("Item", charClass);
             }
 

@@ -91,6 +91,13 @@
     </div>
 </div>
 
+<div class="form-group">
+    <div class="col-12">
+        <label asp-for="@Model.CharClass.StartingWealth"></label>
+        <textarea asp-for="@Model.CharClass.StartingWealth" class="form-control"></textarea>
+    </div>
+</div>
+
 <div class="col-12">
     <input class="btn btn-success" type="submit" value="Сохранить"/>
     <button class="btn btn-outline-dark" asp-controller="Class" asp-action="List">Назад</button>
