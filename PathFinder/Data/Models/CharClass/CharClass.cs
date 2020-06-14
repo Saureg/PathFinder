@@ -25,5 +25,8 @@ namespace PathFinder.Data.Models.CharClass
         public List<ClassAlignment> ClassAlignments { get; set; }
 
         [Display(Name = "Хиты здоровья")] public string HitDice { get; set; }
+
+        [Display(Name = "Начальное снаряжение")]
+        public string StartingWealth { get; set; }
     }
 }

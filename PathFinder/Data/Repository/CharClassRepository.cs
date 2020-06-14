@@ -19,9 +19,15 @@ namespace PathFinder.Data.Repository
 
         public CharClass GetClass(int classId)
         {
-            return _appDbContext.CharClasses
+            var charClass = _appDbContext.CharClasses
                 .Include(x => x.ClassAlignments)
                 .FirstOrDefault(r => r.Id == classId);
+
+            if (charClass == null) return null;
+            foreach (var alignment in charClass.ClassAlignments)
+                alignment.Alignment = _appDbContext.Alignments.FirstOrDefault(x => x.Id == alignment.AlignmentId);
+
+            return charClass;
         }
 
         public void EditClass(CharClass charClass)

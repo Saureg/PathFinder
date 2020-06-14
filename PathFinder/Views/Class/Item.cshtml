@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-12">
                 <p>
-                    <strong><label asp-for="Role"></label>: </strong>
+                    <strong>Роль: </strong>
                     @Model.Role
                 </p>
             </div>
@@ -26,36 +26,46 @@
         <div class="row">
             <div class="col-12">
                 <p>
-                    <strong><label asp-for="ClassAlignments"></label>: </strong>
-
-                    @if (Model.ClassAlignments != null)
-                    {
-                        @for (var i = 0; i < Model.ClassAlignments.Count; i++)
+                    <strong>Доступные мировоззрения: </strong>
+                    <em>
+                        @if (Model.ClassAlignments != null)
                         {
-                            var alignment = Model.ClassAlignments[i];
-                            <em>@alignment</em>
-                            if (i != Model.ClassAlignments.Count - 1)
+                            @for (var i = 0; i < Model.ClassAlignments.Count; i++)
                             {
-                                <em>; </em>
+                                var alignment = Model.ClassAlignments[i].Alignment.Name;
+                                @alignment
+                                if (i != Model.ClassAlignments.Count - 1)
+                                {
+                                    <text>; </text>
+                                }
+                                else
+                                {
+                                    <text>.</text>
+                                }
                             }
-                            else
-                            {
-                                <em>.</em>
-                            }
-                        }    
-                    }
-                    
+                        }
+                    </em>
                 </p>
             </div>
         </div>
 
         <div class="row">
             <div class="col-12">
-                <h3>
-                    <label asp-for="Description"></label>
-                </h3>
-                <p>@Model.Description</p>
+                <p>
+                    <strong>HD: </strong>
+                    @Model.HitDice
+                </p>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-12">
+                <p>
+                    <strong>Начальное снаряжение: </strong>
+                    @Model.StartingWealth
+                </p>
+            </div>
+        </div>
+
     </div>
 </div>
